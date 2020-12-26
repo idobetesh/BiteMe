@@ -14,5 +14,5 @@ const options = {
 
 mongoose
     .connect(url, options)
-    .then(() => console.log('connected'))
+    .then(() => console.log('connected to mongoDB'))
     .catch(err => console.log(`connection error: ${err}`));

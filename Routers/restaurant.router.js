@@ -1,12 +1,12 @@
-const { Router } = require('express');
-const { restaurantDbcontroller } = require('../Controllers/restuarant.ctrl');
+// const { Router } = require('express');
+// const { restaurantController } = require('../Controllers/restaurant.ctrl');
 
-const restaurantRouter= new Router;
+// const restaurantRouter= new Router;
 
-restaurantRouter.get('/', restaurantDbcontroller.getRestaurants);
-restaurantRouter.get('/:id', restaurantDbcontroller.getRestaurant);
-//restaurantRouter.post('/', restaurantDbcontroller.addRestaurant);
-//restaurantRouter.put('/:id', restaurantDbcontroller.updateRestaurant);
-//restaurantRouter.delete('/:id', restaurantDbcontroller.deleteRestaurant);
+// restaurantRouter.get('/', restaurantController.getRestaurants);
+// restaurantRouter.get('/:id', restaurantController.getRestaurant);
+//restaurantRouter.post('/', restaurantController.addRestaurant);
+//restaurantRouter.put('/:id', restaurantController.updateRestaurant);
+//restaurantRouter.delete('/:id', restaurantController.deleteRestaurant);
 
-exports.restaurantRouter = restaurantRouter;
+// exports.restaurantRouter = restaurantRouter;

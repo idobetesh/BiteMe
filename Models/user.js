@@ -6,7 +6,7 @@ const userSchema = new Schema({
     last_name: { type: String },
     address: { type: String},
     email: { type: String, required:true },
-    admin: { type: Boolean }
+    admin: { type: Boolean, default: false }
 }, { collection: 'users' });
 
 const User = model('User', userSchema);
