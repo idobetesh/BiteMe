@@ -20,4 +20,4 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something is broken!');
 });
 
-app.listen(port, () => console.log(`Express server is running on http://localhost:${port}`));
+app.listen(port, () => console.log(`Express server is up & running on http://localhost:${port}`));
