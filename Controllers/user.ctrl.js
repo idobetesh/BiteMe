@@ -1,1 +1,1 @@
-//hihi
+const User = require('../Models/user');
