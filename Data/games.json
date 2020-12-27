@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "QandA": [
+        "Questions": [
             {"qst":"What is your name?" ,"opts":["Yahli","Ido","Yarin"], "ans": 0},
             {"qst": "What is your number?" ,"opts":["One","Two","Three"], "ans": 1},
             {"qst": "What is your age?" ,"opts":["70","2","26"], "ans": 2}
@@ -11,7 +11,7 @@
 
     {
         "id": 2,
-        "QandA": [
+        "Questions": [
             {"qst":"What is your class?" ,"opts":["a","b","c"], "ans": 0},
             {"qst": "What is your color?" ,"opts":["blue","red","green"], "ans": 1},
             {"qst": "What is your hight?" ,"opts":["190","180","126"], "ans": 2}

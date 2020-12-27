@@ -1,9 +1,10 @@
 const { Schema, model } = require('mongoose');
-const QandA = require('./QandA')
+const QASchema = require('./QaA');
+
 
 const gameSchema = new Schema({
     id: { type: Number },
-    QandA: { type: QandA },
+    Questions: [ QASchema ],
     players: [{type: Number}] 
 }, { collection: 'games' });
 

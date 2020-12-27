@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 
 const userRouter  = require("./Routers/user.router.js");
 const restaurantRouter = require("./Routers/restaurant.router.js");
-// const gameRouter = require("./Routers/game.router.js");
+const gameRouter = require("./Routers/game.router.js");
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -21,7 +21,7 @@ app.use((req, res, next)=>{
 
 app.use('/api/user', userRouter.userRouter);
 app.use('/api/restaurant', restaurantRouter.restaurantRouter);
-// app.use('/api/game', gameRouter.gameRouter);
+app.use('/api/game', gameRouter.gameRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

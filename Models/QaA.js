@@ -6,4 +6,4 @@ const QASchema = new Schema({
     ans: {type: Number}
 });
 
-module.exports = QandA;
+module.exports = QASchema;
