@@ -14,14 +14,17 @@ exports.restaurantController = {
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
     },
 
-    addRestaurant(req, res) {
-        // TODO
-        /* AUTO INCREMENT!!!! */
+    async addRestaurant(req, res) {
+        const obj = await new Promise((resolve, reject) => {
+            const obj = Restaurant.findOne({}).sort({ _id: -1 }).limit(1)
+            resolve(obj);
+        });
 
+        const newId = obj.id + 1;
         const { body } = req;
 
         const newRestaurant = new Restaurant({
-            "id": 11, //////////////////////////////////////////////// should be auto incremented 
+            "id": newId, 
             "name": body.name,
             "address": body.address, 
             "style": body.style,
