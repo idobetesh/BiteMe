@@ -11,6 +11,14 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+app.use((req, res, next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods','POST, PUT, GET, DELETE, OPTIONS')
+    res.set('Content-Type', 'application/json');
+    next();
+});
+
 app.use('/api/user', userRouter.userRouter);
 app.use('/api/restaurant', restaurantRouter.restaurantRouter);
 // app.use('/api/game', gameRouter.gameRouter);
