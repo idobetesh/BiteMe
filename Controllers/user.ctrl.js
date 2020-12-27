@@ -14,17 +14,17 @@ exports.userController = {
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
     },
 
-    addUser(req, res) {
-        // const id = User.find().sort({id :1}).limit(1);
-        // console.log(id);
-        // const newId = id + 1;
-        // const id = User.find().limit(1).sort({$natural:-1}).id;
-        // console.log(id);
-
+    async addUser(req, res) {
+        const obj = await new Promise((resolve, reject) => {
+            const obj = User.findOne({}).sort({ _id: -1 }).limit(1)
+            resolve(obj);
+        });
+        
+        const newId = obj.id + 1;
         const { body } = req;
 
         const newUser = new User({
-            "id": 16, //////////////////////////////////////////////// should be auto incremented 
+            "id": newId,  
             "first_name": body.first_name,
             "last_name": body.last_name, 
             "address": body.address,
@@ -32,7 +32,6 @@ exports.userController = {
             "admin": body.admin
         });
        
-        
         const result = newUser.save();
         if (result) {
             res.json(newUser)
