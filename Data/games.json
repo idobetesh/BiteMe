@@ -2,9 +2,9 @@
     {
         "id": 1,
         "QandA": [
-            {"qst":"What is your name?" ,"opts":["Yahli","Ido","Yarin","Barak"], "ans": 0},
-            {"qst": "What is your number?" ,"opts":["One","Two","Three","Four"], "ans": 1},
-            {"qst": "What is your age?" ,"opts":["70","2","26","19"], "ans": 2}
+            {"qst":"What is your name?" ,"opts":["Yahli","Ido","Yarin"], "ans": 0},
+            {"qst": "What is your number?" ,"opts":["One","Two","Three"], "ans": 1},
+            {"qst": "What is your age?" ,"opts":["70","2","26"], "ans": 2}
         ],
         "players": [2, 4, 6, 9, 10]
     },
@@ -12,10 +12,10 @@
     {
         "id": 2,
         "QandA": [
-            {"qst": [], "ans": 1},
-            {"qst": [], "ans": 2},
-            {"qst": [], "ans": 3}
+            {"qst":"What is your class?" ,"opts":["a","b","c"], "ans": 0},
+            {"qst": "What is your color?" ,"opts":["blue","red","green"], "ans": 1},
+            {"qst": "What is your hight?" ,"opts":["190","180","126"], "ans": 2}
         ],
-        "players": [2, 4, 6, 9, 10]
+        "players": [2, 4, 5, 6, 9]
     }
 ]
