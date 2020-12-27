@@ -2,9 +2,9 @@
     {
         "id": 1,
         "QandA": [
-            {"qst": [], "ans": 1},
-            {"qst": [], "ans": 2},
-            {"qst": [], "ans": 3}
+            {"qst":"What is your name?" ,"opts":["Yahli","Ido","Yarin","Barak"], "ans": 0},
+            {"qst": "What is your number?" ,"opts":["One","Two","Three","Four"], "ans": 1},
+            {"qst": "What is your age?" ,"opts":["70","2","26","19"], "ans": 2}
         ],
         "players": [2, 4, 6, 9, 10]
     },
