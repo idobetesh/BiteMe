@@ -18,6 +18,8 @@ exports.userController = {
         // const id = User.find().sort({id :1}).limit(1);
         // console.log(id);
         // const newId = id + 1;
+        // const id = User.find().limit(1).sort({$natural:-1}).id;
+        // console.log(id);
 
         const { body } = req;
 
