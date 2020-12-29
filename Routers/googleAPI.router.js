@@ -3,7 +3,7 @@ const { googleAPIController } = require('../controllers/googleAPI.ctrl');
 
 const googleAPI = new Router();
 
-/* http://localhost:3000/api/game */
+/* http://localhost:3000/api/restaurantAPI */
 googleAPI.get('/', googleAPIController.getRestFromAPI);
 
 module.exports = { googleAPI };

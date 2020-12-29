@@ -1,11 +1,37 @@
+const { default: axios } = require('axios');
 const User = require('../Models/user');
 
 exports.userController = {
 
     getUsers(req, res) {
-        User.find({})
-            .then(docs => { res.json(docs) })
-            .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+        // User.find({})
+        //     .then(docs => { res.json(docs) })
+        //     .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+
+
+        const res_name = req.query.rest;
+        console.log(res_name);
+        if(req.query && req.query.rest) {
+            apiKey = "AIzaSyBkxP0uOzCNjtByiZD1KccRs7GFfKy_7ss";
+            // axios.get(`https://api.github.com/users/`)
+            // axios.get(`https://www.google.co.il/maps/place/${res_name}`)
+            axois.get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${res_name}&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=${apiKey}`)
+            
+                .then((user) => res.json(user.data))
+                .catch((err) => res.json(`Error: ${err}`));
+
+        }
+
+
+        /* Axgithub example works */
+        // const user = req.query.username;
+        // console.log(user);
+        // if(req.query && req.query.username){
+        //     axios.get(`https://api.github.com/users/${user}`)
+        //         .then((user) => res.json(user.data))
+        //         .catch((err) => res.json(`Error: ${err}`));
+
+        // }
     },
 
     getUser(req, res) {
