@@ -3,80 +3,80 @@
         "id": 1,
         "name": "Dabush",
         "address": "Shlomo Ibn Gabirol St 64",
-        "style": "Israeli",
         "price": 1,
-        "rate": 4
+        "rate": 4,
+        "open": false
     },
     {
         "id": 2,
         "name": "Tandoori",
         "address": "Zamenhoff St 2",
-        "style": "Indian",
         "price": 1,
-        "rate": 4
+        "rate": 4,
+        "open": false
     },
     {
         "id": 3,
         "name": "TLBS",
         "address": "Dizengoff St 125",
-        "style": "Burger",
         "price": 2,
-        "rate": 2
+        "rate": 2,
+        "open": false
     },
     {
         "id": 4,
         "name": "Onami",
         "address": "HaArba'a Street",
-        "style": "Japaneese",
         "price": 1,
-        "rate": 2
+        "rate": 2,
+        "open": false
     },
     {
         "id": 5,
         "name": "Magazino",
         "address": "Derech Menachem Begin 21",
-        "style": "Italian",
         "price": 2,
-        "rate": 5
+        "rate": 5,
+        "open": false
     },
     {
         "id": 6,
         "name": "Port19",
         "address": "Shlomo HaMelekh St 2",
-        "style": "Burger",
         "price": 1,
-        "rate": 3
+        "rate": 3,
+        "open": false
     },
     {
         "id": 7,
         "name": "Tzarum",
         "address": "Berel Katzenelson St 25",
-        "style": "Israeli",
         "price": 2,
-        "rate": 1
+        "rate": 1,
+        "open": false
     },
     {
         "id": 8,
         "name": "BlackDragon",
         "address": "Allenby St 44",
-        "style": "Chineese",
         "price": 1,
-        "rate": 3
+        "rate": 3,
+        "open": false
     },
     {
         "id": 9,
         "name": "Stuf my curry",
         "address": "Sderot Sha'ul HaMelech 4",
-        "style": "Indian",
         "price": 1,
-        "rate": 2
+        "rate": 2,
+        "open": false
     },
     {
         "id": 10,
         "name": "TYO",
         "address": "Shabazi St 58",
-        "style": "Japaneese",
         "price": 3,
-        "rate": 4
+        "rate": 4,
+        "open": false
     }
 ]

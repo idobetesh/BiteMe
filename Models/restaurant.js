@@ -4,9 +4,9 @@ const restaurantSchema = new Schema({
     id: { type: Number },
     name: { type: String },
     address: { type: String },
-    style: { type: String },
     price: { type: Number },
     rate: { type: String },
+    open: { type: Boolean },
 }, { collection: 'restaurants' });
 
 const Restaurant = model('Restaurant', restaurantSchema);
