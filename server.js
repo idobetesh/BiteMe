@@ -62,13 +62,8 @@ app.post('/api/send', (res, req) => {
             if (err) {
                 console.log('Error Occurs');
             } else {
-                console.log('Email sentt')
+                console.log('Email sent')
             }
         })
-
-    });
-
-
-
-    
+    });    
 });

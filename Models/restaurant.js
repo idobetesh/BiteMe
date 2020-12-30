@@ -5,7 +5,7 @@ const restaurantSchema = new Schema({
     name: { type: String },
     address: { type: String },
     price: { type: Number },
-    rate: { type: String },
+    rate: { type: Number },
     open: { type: Boolean },
 }, { collection: 'restaurants' });
 

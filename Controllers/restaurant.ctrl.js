@@ -25,7 +25,10 @@ exports.restaurantController = {
             if (err) console.log(err);
 
             if (rest) {
-                console.log("found!")
+                console.log("found!");
+                // Restaurant.updateOne()
+                console.log(rest.rate + 100);
+            
             } else {
                 console.log("im inn");
                 const newId = obj.id + 1;
@@ -35,9 +38,9 @@ exports.restaurantController = {
                     "id": newId,
                     "name": body.name,
                     "address": body.address,
-                    "style": body.style,
                     "price": body.price,
-                    "rate": body.rate
+                    "rate": body.rate,
+                    "open": body.open
             });
                 const result = newRestaurant.save();
                 if (result) {
@@ -47,31 +50,6 @@ exports.restaurantController = {
                 }
             }
         });
-
-        // console.log({name: req.body.name});
-        // if (Restaurant.findOne({ name: req.body.name })) {
-        //    console.log("Hitler");
-        // } else {
-        //     console.log("im inn");
-        //     const newId = obj.id + 1;
-        //     const { body } = req;
-
-        //     const newRestaurant = new Restaurant({
-        //         "id": newId,
-        //         "name": body.name,
-        //         "address": body.formatted_address,
-        //         "style": body.style,
-        //         "price": body.price,
-        //         "rate": body.rate
-        //     });
-
-        //     const result = newRestaurant.save();
-        //     if (result) {
-        //         res.json(newRestaurant)
-        //     } else {
-        //         res.status(404).send("Error, could NOT save restaurant");
-        //     }
-        // }
     },
 
     deleteRestaurant(req, res) {
