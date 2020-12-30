@@ -1,4 +1,5 @@
 const User = require('../Models/user');
+const nodemailer = require('nodemailer');
 
 exports.userController = {
 
@@ -54,4 +55,5 @@ exports.userController = {
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT update user ${userToUpdate}: ${err}`))
     }
+
 }
