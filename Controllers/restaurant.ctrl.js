@@ -20,24 +20,58 @@ exports.restaurantController = {
             resolve(obj);
         });
 
-        const newId = obj.id + 1;
-        const { body } = req;
+        const query = Restaurant.where({ name: req.body.name });
+        query.findOne((err, kitten) => {
+            if (err) console.log(err);
 
-        const newRestaurant = new Restaurant({
-            "id": newId,
-            "name": body.name,
-            "address": body.address,
-            "style": body.style,
-            "price": body.price,
-            "rate": body.rate
+            if (kitten) {
+                console.log("found!")
+            } else {
+                console.log("im inn");
+                const newId = obj.id + 1;
+                const { body } = req;
+
+                const newRestaurant = new Restaurant({
+                    "id": newId,
+                    "name": body.name,
+                    "address": body.address,
+                    "style": body.style,
+                    "price": body.price,
+                    "rate": body.rate
+            });
+                const result = newRestaurant.save();
+                if (result) {
+                    res.json(newRestaurant)
+                } else {
+                    res.status(404).send("Error, could NOT save restaurant");
+                }
+            }
         });
 
-        const result = newRestaurant.save();
-        if (result) {
-            res.json(newRestaurant)
-        } else {
-            res.status(404).send("Error, could NOT save restaurant");
-        }
+        // console.log({name: req.body.name});
+        // if (Restaurant.findOne({ name: req.body.name })) {
+        //    console.log("Hitler");
+        // } else {
+        //     console.log("im inn");
+        //     const newId = obj.id + 1;
+        //     const { body } = req;
+
+        //     const newRestaurant = new Restaurant({
+        //         "id": newId,
+        //         "name": body.name,
+        //         "address": body.formatted_address,
+        //         "style": body.style,
+        //         "price": body.price,
+        //         "rate": body.rate
+        //     });
+
+        //     const result = newRestaurant.save();
+        //     if (result) {
+        //         res.json(newRestaurant)
+        //     } else {
+        //         res.status(404).send("Error, could NOT save restaurant");
+        //     }
+        // }
     },
 
     deleteRestaurant(req, res) {
