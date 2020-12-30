@@ -21,10 +21,10 @@ exports.restaurantController = {
         });
 
         const query = Restaurant.where({ name: req.body.name });
-        query.findOne((err, kitten) => {
+        query.findOne((err, rest) => {
             if (err) console.log(err);
 
-            if (kitten) {
+            if (rest) {
                 console.log("found!")
             } else {
                 console.log("im inn");
