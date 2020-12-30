@@ -8,9 +8,7 @@ const gameRouter = require("./Routers/game.router.js");
 const googleAPIRouter = require("./Routers/googleAPI.router.js");
 
 app.use(express.json());
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -27,7 +25,7 @@ app.use('/api/restaurantAPI', googleAPIRouter.googleAPI);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('Something is broken!');
+    res.status(500).send('Something went wrong..:(');
 });
 
 app.listen(port, () => console.log(`Express server is up & running on http://localhost:${port}`));

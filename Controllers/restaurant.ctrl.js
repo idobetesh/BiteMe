@@ -1,12 +1,10 @@
 const Restaurant = require('../models/restaurant');
-const axios = require('axios').default;
+
 exports.restaurantController = {
 
     getRestaurants(req, res) {
         Restaurant.find({})
-            .then(docs => {
-                res.json(docs)
-            })
+            .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
     },
 
@@ -18,16 +16,12 @@ exports.restaurantController = {
 
     async addRestaurant(req, res) {
         const obj = await new Promise((resolve, reject) => {
-            const obj = Restaurant.findOne({}).sort({
-                _id: -1
-            }).limit(1)
+            const obj = Restaurant.findOne({}).sort({ _id: -1 }).limit(1)
             resolve(obj);
         });
 
         const newId = obj.id + 1;
-        const {
-            body
-        } = req;
+        const { body } = req;
 
         const newRestaurant = new Restaurant({
             "id": newId,
@@ -48,24 +42,16 @@ exports.restaurantController = {
 
     deleteRestaurant(req, res) {
         const restaurantToDelete = req.params.id;
-        Restaurant.deleteOne({
-                id: restaurantToDelete
-            })
+        Restaurant.deleteOne({ id: restaurantToDelete })
             .then(docs => res.json(docs))
             .catch(err => console.log(`Error, could NOT delete restaurant ${restaurantToDelete} from database: ${err}`));
     },
 
     updateRestaurant(req, res) {
         const restaurantToUpdate = req.params.id;
-        const {
-            body
-        } = req;
-        Restaurant.findOneAndUpdate({
-                id: restaurantToUpdate
-            }, body)
-            .then(docs => {
-                res.json(docs)
-            })
+        const { body } = req;
+        Restaurant.findOneAndUpdate({ id: restaurantToUpdate }, body)
+            .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT update restaurant ${restaurantToUpdate}: ${err}`))
     }
 }
