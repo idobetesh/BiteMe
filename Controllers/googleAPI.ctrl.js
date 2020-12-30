@@ -7,7 +7,7 @@ exports.googleAPIController = {
             console.log("Hey Mate");
             axios
                 .get(`https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=${req.query.restName}&inputtype=textquery&fields=geometry&key=AIzaSyBkxP0uOzCNjtByiZD1KccRs7GFfKy_7ss`)
-                .then((response) => {res.json(response.data.candidates[0].geometry.location); })
+                .then((response) => {res.json(response.data); })
                 .catch(err => console.log(`Error is: ${err}`));
         }
     }
