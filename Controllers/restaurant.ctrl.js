@@ -1,4 +1,3 @@
-// const { restart } = require('nodemon');
 const Restaurant = require('../models/restaurant');
 
 exports.restaurantController = {
@@ -10,17 +9,11 @@ exports.restaurantController = {
     },
 
     getRestaurant(req, res) {
-        // if (req.params.id) {
-        //     Restaurant.findOne({ id: req.params.id })
-        //         .then(docs => { res.json(docs) })
-        //         .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-    // }
-
-        if (req.params.id === 'maxCount') {
-            Restaurant.find({}).sort({count : -1}).limit(1)
-            .then(docs => { res.json(docs) })
-            .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-        }
+        if (req.params.id) {
+            Restaurant.findOne({ id: req.params.id })
+                .then(docs => { res.json(docs) })
+                .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+            }
     },
 
     async addRestaurant(req, res) {
@@ -31,13 +24,13 @@ exports.restaurantController = {
 
         const query = Restaurant.where({ name: req.body.name });
         query.findOne((err, rest) => {
-            if (err) console.log(err);
+            if (err) 
+            (err);
 
             if (rest) {
-                console.log("already exists! => rest.count++");
+                /* restaurant exists in DB ? rest.count++ : creat new restaurant and push to the DB*/
                 Restaurant.updateOne({ _id: rest._id }, {$inc: { count: 1 }}).exec();
             } else {
-                console.log("im inn");
                 const newId = obj.id + 1;
                 const { body } = req;
 
@@ -74,10 +67,4 @@ exports.restaurantController = {
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT update restaurant ${restaurantToUpdate}: ${err}`))
     }
-
-    // findMaxCount(req, res) {
-    //     Restaurant.find({}).sort({count : -1}).limit(1)
-    //     .then(docs => { res.json(docs) })
-    //     .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-    // }
 }

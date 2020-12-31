@@ -6,7 +6,7 @@ const restaurantRouter = new Router();
 /* http://localhost:3000/api/restaurant */
 restaurantRouter.get('/', restaurantController.getRestaurants);
 restaurantRouter.get('/:id', restaurantController.getRestaurant);
-// restaurantRouter.get('/maxCount', restaurantController.findMaxCount);
+//restaurantRouter.get('/:maxCount', restaurantController.findMaxCount);
 restaurantRouter.post('/', restaurantController.addRestaurant);
 restaurantRouter.put('/:id', restaurantController.updateRestaurant);
 restaurantRouter.delete('/:id', restaurantController.deleteRestaurant);
