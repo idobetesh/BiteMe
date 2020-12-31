@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { googleAPIController } = require('../controllers/googleAPI.ctrl');
+const { googleAPIController } = require('../Controllers/googleAPI.ctrl');
 
 const googleAPI = new Router();
 

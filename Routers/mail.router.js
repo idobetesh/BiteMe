@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { mailController } = require('../controllers/mail.ctrl');
+const { mailController } = require('../Controllers/mail.ctrl');
 
 const mailRouter = new Router();
 

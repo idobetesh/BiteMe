@@ -1,4 +1,4 @@
-const Restaurant = require('../models/restaurant');
+const Restaurant = require('../Models/restaurant');
 const axios = require('axios').default;
 
 exports.googleAPIController = {
