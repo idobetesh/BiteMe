@@ -55,5 +55,4 @@ exports.userController = {
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT update user ${userToUpdate}: ${err}`))
     }
-
 }

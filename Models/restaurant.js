@@ -7,6 +7,7 @@ const restaurantSchema = new Schema({
     price: { type: Number },
     rate: { type: Number },
     open: { type: Boolean },
+    count: { type: Number }
 }, { collection: 'restaurants' });
 
 const Restaurant = model('Restaurant', restaurantSchema);

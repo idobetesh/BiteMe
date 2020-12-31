@@ -5,7 +5,8 @@
         "address": "Shlomo Ibn Gabirol St 64",
         "price": 1,
         "rate": 4,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 2,
@@ -13,7 +14,8 @@
         "address": "Zamenhoff St 2",
         "price": 1,
         "rate": 4,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 3,
@@ -21,7 +23,8 @@
         "address": "Dizengoff St 125",
         "price": 2,
         "rate": 2,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 4,
@@ -29,7 +32,8 @@
         "address": "HaArba'a Street",
         "price": 1,
         "rate": 2,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 5,
@@ -37,7 +41,8 @@
         "address": "Derech Menachem Begin 21",
         "price": 2,
         "rate": 5,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 6,
@@ -45,7 +50,8 @@
         "address": "Shlomo HaMelekh St 2",
         "price": 1,
         "rate": 3,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 7,
@@ -53,7 +59,8 @@
         "address": "Berel Katzenelson St 25",
         "price": 2,
         "rate": 1,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 8,
@@ -61,7 +68,8 @@
         "address": "Allenby St 44",
         "price": 1,
         "rate": 3,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 9,
@@ -69,7 +77,8 @@
         "address": "Sderot Sha'ul HaMelech 4",
         "price": 1,
         "rate": 2,
-        "open": false
+        "open": false,
+        "count": 1
     },
     {
         "id": 10,
@@ -77,6 +86,7 @@
         "address": "Shabazi St 58",
         "price": 3,
         "rate": 4,
-        "open": false
+        "open": false,
+        "count": 1
     }
 ]

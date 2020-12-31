@@ -1,3 +1,4 @@
+// const { restart } = require('nodemon');
 const Restaurant = require('../models/restaurant');
 
 exports.restaurantController = {
@@ -9,9 +10,17 @@ exports.restaurantController = {
     },
 
     getRestaurant(req, res) {
-        Restaurant.findOne({ id: req.params.id })
+        // if (req.params.id) {
+        //     Restaurant.findOne({ id: req.params.id })
+        //         .then(docs => { res.json(docs) })
+        //         .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+    // }
+
+        if (req.params.id === 'maxCount') {
+            Restaurant.find({}).sort({count : -1}).limit(1)
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+        }
     },
 
     async addRestaurant(req, res) {
@@ -25,10 +34,8 @@ exports.restaurantController = {
             if (err) console.log(err);
 
             if (rest) {
-                console.log("found!");
-                // Restaurant.updateOne()
-                console.log(rest.rate + 100);
-            
+                console.log("already exists! => rest.count++");
+                Restaurant.updateOne({ _id: rest._id }, {$inc: { count: 1 }}).exec();
             } else {
                 console.log("im inn");
                 const newId = obj.id + 1;
@@ -40,8 +47,9 @@ exports.restaurantController = {
                     "address": body.address,
                     "price": body.price,
                     "rate": body.rate,
-                    "open": body.open
-            });
+                    "open": body.open,
+                    "count": 1
+                });
                 const result = newRestaurant.save();
                 if (result) {
                     res.json(newRestaurant)
@@ -66,4 +74,10 @@ exports.restaurantController = {
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT update restaurant ${restaurantToUpdate}: ${err}`))
     }
+
+    // findMaxCount(req, res) {
+    //     Restaurant.find({}).sort({count : -1}).limit(1)
+    //     .then(docs => { res.json(docs) })
+    //     .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+    // }
 }
