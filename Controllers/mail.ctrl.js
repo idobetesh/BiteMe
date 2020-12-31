@@ -46,6 +46,6 @@ exports.mailController = {
                 }
             })
         });   
-        res.send(`mails were send to ${maillist}`);
+        res.send(`"${content}" \n\nwas send to ${maillist}`);
     }
 }
