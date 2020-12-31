@@ -23,7 +23,7 @@ exports.mailController = {
             }
         });
     
-        /* will be added dynamicly from users email */
+        /* will be added dynamically from users email */
         let maillist = [
             'yarin1994@gmail.com',
             'idobetesh@gmail.com',
@@ -45,6 +45,7 @@ exports.mailController = {
                     console.log('Email sent')
                 }
             })
-        });    
+        });   
+        res.send(`mails were send to ${maillist}`);
     }
 }
