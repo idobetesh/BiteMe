@@ -18,14 +18,14 @@ exports.restaurantController = {
 
     async addRestaurant(req, res) {
         const obj = await new Promise((resolve, reject) => {
-            const obj = Restaurant.findOne({}).sort({ _id: -1 }).limit(1)
+            const obj = Restaurant.findOne({}).sort({ _id: -1 }).limit(1);
             resolve(obj);
         });
 
         const query = Restaurant.where({ name: req.body.name });
         query.findOne((err, rest) => {
             if (err) 
-            (err);
+                console.log(err);
 
             if (rest) {
                 /* restaurant exists in DB ? rest.count++ : creat new restaurant and push to the DB*/
