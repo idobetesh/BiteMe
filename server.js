@@ -34,6 +34,10 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong..😥');
 });
 
+app.all('/*', (req, res) => {
+    res.status(404).sendFile(`${__dirname}/error.html`);
+});
+
 app.listen(port, () => console.log(`Express server is up & running on http://localhost:${port}`));
 
 
