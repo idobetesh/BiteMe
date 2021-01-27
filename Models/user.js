@@ -2,10 +2,9 @@ const { Schema, model } = require('mongoose');
 
 const userSchema = new Schema({
     id: { type: Number },
-    first_name: { type: String },
-    last_name: { type: String },
-    address: { type: String},
-    email: { type: String, required:true },
+    username: { type: String },
+    email: { type: String, required: true },
+    password: { type: String, required: true},
     admin: { type: Boolean, default: false }
 }, { collection: 'users' });
 

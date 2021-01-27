@@ -1,5 +1,8 @@
 const User = require('../Models/user');
-const nodemailer = require('nodemailer');
+const passport = require("passport");
+const bcrypt = require("bcryptjs");
+const { exists } = require('../Models/user');
+// const nodemailer = require('nodemailer');
 
 exports.userController = {
 
@@ -26,10 +29,9 @@ exports.userController = {
 
         const newUser = new User({
             "id": newId,  
-            "first_name": body.first_name,
-            "last_name": body.last_name, 
-            "address": body.address,
+            "name": body.username,
             "email": body.email,
+            "password": body.password,
             "admin": body.admin
         });
        
@@ -54,5 +56,38 @@ exports.userController = {
         User.findOneAndUpdate({id: userToUpdate}, body)
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT update user ${userToUpdate}: ${err}`))
+    },
+
+    userLogin(req, res, next) {
+        console.log("bla bla");
+        passport.authenticate('local', (err, user, info) => {
+            console.log("HEySDF");
+            if (err) next(new Error('AuthenticationError'), req, res);
+            if (!user) res.send("No User Exists");
+            else {
+              req.logIn(user, (err) => {
+                if (err) console.log("ERROR!" , err);
+                res.send("Successfully Authenticated");
+                console.log(req.user);
+              });
+            }
+          })(req, res, next);
+    },
+
+    userRegister(req, res) {
+        User.findOne({ username: req.body.username }, async (err, doc) => {
+            if (err) throw err;
+            if (doc) res.send("User Already Exists");
+            if (!doc) {
+              const hashedPassword = await bcrypt.hash(req.body.password, 10);
+              const newUser = new User({
+                username: req.body.username,
+                email: req.body.email,
+                password: hashedPassword,
+              });
+              await newUser.save();
+              res.send("User Created");
+            }
+          });
     }
 }
