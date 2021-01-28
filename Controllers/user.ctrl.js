@@ -59,11 +59,13 @@ exports.userController = {
     },
 
     userLogin(req, res, next) {
-        console.log("bla bla");
+        console.log("In userLogin");
         passport.authenticate('local', (err, user, info) => {
-            console.log("HEySDF");
+            console.log("After passport.authenticate");
             if (err) next(new Error('AuthenticationError'), req, res);
-            if (!user) res.send("No User Exists");
+            if (!user) {
+                console.log("No user exist");
+            }
             else {
               req.logIn(user, (err) => {
                 if (err) console.log("ERROR!" , err);

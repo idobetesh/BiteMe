@@ -36,7 +36,7 @@ app.use(
   })
 );
 
-require("./passportConfig")(passport);
+require('./passportConfig')(passport);
   app.use(
     session({
       secret: "secretcode",
