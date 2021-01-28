@@ -79,10 +79,16 @@ exports.userController = {
     userRegister(req, res) {
         User.findOne({ username: req.body.username }, async (err, doc) => {
             if (err) throw err;
-            if (doc) res.send("User Already Exists");
+            if (doc) res.send({msg: "User Already Exists"});
             if (!doc) {
               const hashedPassword = await bcrypt.hash(req.body.password, 10);
+              const obj = await new Promise((resolve, reject) => {
+                const obj = User.findOne({}).sort({ _id: -1 }).limit(1)
+                resolve(obj);
+              });
+            const newId = obj.id + 1;
               const newUser = new User({
+                id: newId,
                 username: req.body.username,
                 email: req.body.email,
                 password: hashedPassword,
