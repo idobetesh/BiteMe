@@ -26,8 +26,7 @@ exports.gameController = {
 
         const newGame = new Game({
             "id": newId, 
-            "Questions": body.Questions,
-            "players": body.players
+            "game": req.body.game
         });
        
         const result = newGame.save();

@@ -45,6 +45,7 @@ require('./passportConfig')(passport);
     })
   );
   app.use(cookieParser("secretcode"));
+  // Passport middleware
   app.use(passport.initialize());
   app.use(passport.session());
 

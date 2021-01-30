@@ -1,21 +1,81 @@
 [
-    {
-        "id": 1,
-        "Questions": [
-            {"qst":"What is your name?" ,"opts":["Yahli","Ido","Yarin"], "ans": 0},
-            {"qst": "What is your number?" ,"opts":["One","Two","Three"], "ans": 1},
-            {"qst": "What is your age?" ,"opts":["70","2","26"], "ans": 2}
-        ],
-        "players": [2, 4, 6, 9, 10]
-    },
-
-    {
-        "id": 2,
-        "Questions": [
-            {"qst":"What is your class?" ,"opts":["a","b","c"], "ans": 0},
-            {"qst": "What is your color?" ,"opts":["blue","red","green"], "ans": 1},
-            {"qst": "What is your hight?" ,"opts":["190","180","126"], "ans": 2}
-        ],
-        "players": [2, 4, 5, 6, 9]
+    {   "id":1,
+        "game":[
+                    {
+                        "question": "What is the capital of France?",
+                        "options": [
+                            { "answer": "New York", "isCorrect": false },
+                            { "answer": "London", "isCorrect": false },
+                            { "answer": "Paris", "isCorrect": true },
+                            { "answer": "Dublin", "isCorrect": false }
+                        ]
+                    },
+                    {
+                        "question": "Who is CEO of Tesla?",
+                        "options": [
+                            { "answer": "Jeff Bezos", "isCorrect": false },
+                            { "answer": "Elon Musk", "isCorrect": true },
+                            { "answer": "Bill Gates", "isCorrect": false },
+                            { "answer": "Tony Stark", "isCorrect": false }
+                        ]
+                    },
+                    {
+                        "question": "The iPhone was created by which company?",
+                        "options": [
+                            { "answer": "Apple", "isCorrect": true },
+                            { "answer": "Intel", "isCorrect": false },
+                            { "answer": "Amazon", "isCorrect": false },
+                            { "answer": "Microsoft", "isCorrect": false }
+                        ]
+                    },
+                    {
+                        "question": "How many Harry Potter books are there?",
+                        "options": [
+                            { "answer": "1", "isCorrect": false },
+                            { "answer": "4", "isCorrect": false },
+                            { "answer": "6", "isCorrect": false },
+                            { "answer": "7", "isCorrect": true }
+                ]
     }
+]
+},
+{   "id":2,
+    "game":[
+                {
+                    "question": "What is the capital of France?",
+                    "options": [
+                        { "answer": "New York", "isCorrect": false },
+                        { "answer": "London", "isCorrect": false },
+                        { "answer": "Paris", "isCorrect": true },
+                        { "answer": "Dublin", "isCorrect": false }
+                    ]
+                },
+                {
+                    "question": "Who is CEO of Tesla?",
+                    "options": [
+                        { "answer": "Jeff Bezos", "isCorrect": false },
+                        { "answer": "Elon Musk", "isCorrect": true },
+                        { "answer": "Bill Gates", "isCorrect": false },
+                        { "answer": "Tony Stark", "isCorrect": false }
+                    ]
+                },
+                {
+                    "question": "The iPhone was created by which company?",
+                    "options": [
+                        { "answer": "Apple", "isCorrect": true },
+                        { "answer": "Intel", "isCorrect": false },
+                        { "answer": "Amazon", "isCorrect": false },
+                        { "answer": "Microsoft", "isCorrect": false }
+                    ]
+                },
+                {
+                    "question": "How many Harry Potter books are there?",
+                    "options": [
+                        { "answer": "1", "isCorrect": false },
+                        { "answer": "4", "isCorrect": false },
+                        { "answer": "6", "isCorrect": false },
+                        { "answer": "7", "isCorrect": true }
+                ]}
+        ]
+}
 ]

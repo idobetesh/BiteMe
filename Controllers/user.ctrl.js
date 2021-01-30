@@ -75,6 +75,11 @@ exports.userController = {
             }
           })(req, res, next);
     },
+    
+    userLogout(req, res) {
+        req.logout();
+        res.send({msg: "User logged-out"});
+    },
 
     userRegister(req, res) {
         User.findOne({ username: req.body.username }, async (err, doc) => {
