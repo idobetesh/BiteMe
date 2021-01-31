@@ -1,81 +1,180 @@
 [
-    {   "id":1,
-        "game":[
+    {
+        "id": 1,
+        "game": [
+            {
+                "question": "What is the capital of France?",
+                "options": [
                     {
-                        "question": "What is the capital of France?",
-                        "options": [
-                            { "answer": "New York", "isCorrect": false },
-                            { "answer": "London", "isCorrect": false },
-                            { "answer": "Paris", "isCorrect": true },
-                            { "answer": "Dublin", "isCorrect": false }
-                        ]
+                        "answer": "New York",
+                        "isCorrect": false
                     },
                     {
-                        "question": "Who is CEO of Tesla?",
-                        "options": [
-                            { "answer": "Jeff Bezos", "isCorrect": false },
-                            { "answer": "Elon Musk", "isCorrect": true },
-                            { "answer": "Bill Gates", "isCorrect": false },
-                            { "answer": "Tony Stark", "isCorrect": false }
-                        ]
+                        "answer": "London",
+                        "isCorrect": false
                     },
                     {
-                        "question": "The iPhone was created by which company?",
-                        "options": [
-                            { "answer": "Apple", "isCorrect": true },
-                            { "answer": "Intel", "isCorrect": false },
-                            { "answer": "Amazon", "isCorrect": false },
-                            { "answer": "Microsoft", "isCorrect": false }
-                        ]
+                        "answer": "Paris",
+                        "isCorrect": true
                     },
                     {
-                        "question": "How many Harry Potter books are there?",
-                        "options": [
-                            { "answer": "1", "isCorrect": false },
-                            { "answer": "4", "isCorrect": false },
-                            { "answer": "6", "isCorrect": false },
-                            { "answer": "7", "isCorrect": true }
+                        "answer": "Dublin",
+                        "isCorrect": false
+                    }
                 ]
-    }
-]
-},
-{   "id":2,
-    "game":[
-                {
-                    "question": "What is the capital of France?",
-                    "options": [
-                        { "answer": "New York", "isCorrect": false },
-                        { "answer": "London", "isCorrect": false },
-                        { "answer": "Paris", "isCorrect": true },
-                        { "answer": "Dublin", "isCorrect": false }
-                    ]
-                },
-                {
-                    "question": "Who is CEO of Tesla?",
-                    "options": [
-                        { "answer": "Jeff Bezos", "isCorrect": false },
-                        { "answer": "Elon Musk", "isCorrect": true },
-                        { "answer": "Bill Gates", "isCorrect": false },
-                        { "answer": "Tony Stark", "isCorrect": false }
-                    ]
-                },
-                {
-                    "question": "The iPhone was created by which company?",
-                    "options": [
-                        { "answer": "Apple", "isCorrect": true },
-                        { "answer": "Intel", "isCorrect": false },
-                        { "answer": "Amazon", "isCorrect": false },
-                        { "answer": "Microsoft", "isCorrect": false }
-                    ]
-                },
-                {
-                    "question": "How many Harry Potter books are there?",
-                    "options": [
-                        { "answer": "1", "isCorrect": false },
-                        { "answer": "4", "isCorrect": false },
-                        { "answer": "6", "isCorrect": false },
-                        { "answer": "7", "isCorrect": true }
-                ]}
+            },
+            {
+                "question": "Who is CEO of Tesla?",
+                "options": [
+                    {
+                        "answer": "Jeff Bezos",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Elon Musk",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Bill Gates",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Tony Stark",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "The iPhone was created by which company?",
+                "options": [
+                    {
+                        "answer": "Apple",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Intel",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Amazon",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Microsoft",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "How many Harry Potter books are there?",
+                "options": [
+                    {
+                        "answer": "1",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "4",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "6",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "7",
+                        "isCorrect": true
+                    }
+                ]
+            }
         ]
-}
+    },
+    {
+        "id": 2,
+        "game": [
+            {
+                "question": "What is the capital of France?",
+                "options": [
+                    {
+                        "answer": "New York",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "London",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Paris",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Dublin",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "Who is CEO of Tesla?",
+                "options": [
+                    {
+                        "answer": "Jeff Bezos",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Elon Musk",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Bill Gates",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Tony Stark",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "The iPhone was created by which company?",
+                "options": [
+                    {
+                        "answer": "Apple",
+                        "isCorrect": true
+                    },
+                    {
+                        "answer": "Intel",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Amazon",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "Microsoft",
+                        "isCorrect": false
+                    }
+                ]
+            },
+            {
+                "question": "How many Harry Potter books are there?",
+                "options": [
+                    {
+                        "answer": "1",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "4",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "6",
+                        "isCorrect": false
+                    },
+                    {
+                        "answer": "7",
+                        "isCorrect": true
+                    }
+                ]
+            }
+        ]
+    }
 ]

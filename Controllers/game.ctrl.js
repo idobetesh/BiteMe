@@ -23,7 +23,8 @@ exports.gameController = {
         
         const newId = obj.id + 1;
         const { body } = req;
-
+        console.log(body.game);
+        console.log(req.data);
         const newGame = new Game({
             "id": newId, 
             "game": req.body.game

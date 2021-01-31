@@ -5,111 +5,111 @@ const gameSchema = new Schema({
     game: 
     [
         {
-            question1: {type: String},
+            question: {type: String},
             options:
             [
                 {
-                    answer1: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer2: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer3: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer4: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 }
             ]
         },
         {
-            question2: {type: String},
+            question: {type: String},
             options:
             [
                 {
-                    answer1: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer2: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer3: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer4: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 }
             ]
         },
         {
-            question3: {type: String},
+            question: {type: String},
             options:
             [
                 {
-                    answer1: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer2: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer3: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer4: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 }
             ]
         },
         {
-            question4: {type: String},
+            question: {type: String},
             options:
             [
                 {
-                    answer1: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer2: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer3: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer4: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 }
             ]
         },
         {
-            question5: {type: String},
+            question: {type: String},
             options:
             [
                 {
-                    answer1: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer2: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer3: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 },
                 {
-                    answer4: {type: String},
+                    answer: {type: String},
                     isCorrect: {type: Boolean}
                 }
             ]
