@@ -1,11 +1,8 @@
 const { Schema } = require('mongoose');
 
-const questionSchema = new Schema({
-    question:
-        {
-            answer: {type: String},
-            isCorrect: {type: Boolean}
-        }
+const answerSchema = new Schema({
+    answer: {type: String},
+    isCorrect: {type: Boolean}
 });
 
-module.exports = questionSchema;
+module.exports = answerSchema;

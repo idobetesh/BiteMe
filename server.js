@@ -18,6 +18,7 @@ const maxCountRouter = require('./Routers/maxCount.router.js');
 const mailRouter = require('./Routers/mail.router.js');
 const authRouter = require('./Routers/auth.router.js');
 const User = require("./Models/user.js");
+const authMiddleware = require('./Middleware/auth.js');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -49,8 +50,11 @@ require('./passportConfig')(passport);
   // Passport middleware
   app.use(passport.initialize());
   app.use(passport.session());
+  
+// checking auth middleware
+app.use(authMiddleware.checkAuth);
 
-app.use('/api/user', userRouter.userRouter);
+app.use('/api/user', authMiddleware.checkAuth ,userRouter.userRouter);
 app.use('/api/restaurant', restaurantRouter.restaurantRouter);
 app.use('/api/game', gameRouter.gameRouter);
 app.use('/api/restaurantAPI', googleAPIRouter.googleAPI);

@@ -39,8 +39,9 @@ authRouter.post('/', async (req, res) => {
             console.log("Not works");
         }
         req.session.userID = dbUser.id;
+        console.log(req.session.userID);
         res.cookie('session-token', user.id, { expires: new Date(Date.now() + 3600000) });
-        res.json(user);
+        res.json(dbUser);
     } catch (err) {
         console.log(err);
     }
