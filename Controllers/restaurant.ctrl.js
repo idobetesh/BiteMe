@@ -1,19 +1,23 @@
 const Restaurant = require('../Models/restaurant');
+const { saveToLog } = require('../Logs/logger');
 
 exports.restaurantController = {
 
     getRestaurants(req, res) {
         Restaurant.find({})
             .then(docs => { res.json(docs) })
+            // .then(saveToLog({ msg: "Get restaurants", statusCode: res.statusCode }))
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
     },
 
     getRestaurant(req, res) {
         if (req.params.id) {
             Restaurant.findOne({ id: req.params.id })
-                .then(docs => { res.json(docs) })
+                .then(docs => { res.json(docs)})
                 .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-            }
+            
+        }
+        
     },
 
     async addRestaurant(req, res) {
@@ -24,12 +28,12 @@ exports.restaurantController = {
 
         const query = Restaurant.where({ name: req.body.name });
         query.findOne((err, rest) => {
-            if (err) 
+            if (err)
                 console.log(err);
 
             if (rest) {
-                /* restaurant exists in DB ? rest.count++ : creat new restaurant and push to the DB*/
-                Restaurant.updateOne({ _id: rest._id }, {$inc: { count: 1 }}).exec();
+                /* restaurant exists in DB ? rest.count++ : create new restaurant and push to the DB*/
+                Restaurant.updateOne({ _id: rest._id }, { $inc: { count: 1 } }).exec();
             } else {
                 const newId = obj.id + 1;
                 const { body } = req;

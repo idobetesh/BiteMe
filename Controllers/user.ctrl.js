@@ -2,7 +2,9 @@ const User = require('../Models/user');
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const { exists } = require('../Models/user');
+const { saveToLog } = require('../Logs/logger');
 // const nodemailer = require('nodemailer');
+// const logger = require('../Logs/logger');
 
 async function getUserToGoogle(name, email) {
   let user = await User.findOne({ username:name ,email: email})
@@ -13,14 +15,18 @@ exports.userController = {
   getUserToGoogle,
     getUsers(req, res) {
         User.find({})
-            .then(docs => { res.json(docs) })
-            .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+            .then(docs => { res.json(docs)})
+            .catch(err => {console.log(`Error, could NOT get to database: ${err}`)});
+
+            
     },
 
     getUser(req, res) {
         User.findOne({ id: req.params.id })
-            .then(docs => { res.json(docs) })
+            .then(docs => { res.json(docs)})
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+            // .catch(logger.info(`User ${id} not exists`));
+            // saveToLog({msg: "Get users", statusCode: 200});
     },
 
     async addUser(req, res) {

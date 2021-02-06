@@ -20,6 +20,10 @@ const authRouter = require('./Routers/auth.router.js');
 const User = require("./Models/user.js");
 const authMiddleware = require('./Middleware/auth.js');
 
+const {morganChalk, logger } = require("./Logs/logger");
+
+app.use(morganChalk);
+app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -72,4 +76,5 @@ app.all('/*', (req, res) => {
     res.status(404).sendFile(`${__dirname}/error.html`);
 });
 
+// saveToLog({msg: "Get restaurants", statusCode: 200});
 app.listen(port, () => console.log(`Express server is up & running on http://localhost:${port}`));

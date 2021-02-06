@@ -8,15 +8,15 @@ const gameSchema = new Schema({
     // Logs will be added either to DB or to a file - mainly includes the request and response and everything that will help to understand.
     // 
     id: {type: Number},
-    time: {type: Date},
-    duration: {type: Number, default:5, min:5, max:10},
+    time: {type: Date, default: Date().toString()},
+    duration: {type: Number, default:5},
     game: 
     [{
         question: {type: String},
         options: [{type: answerSchema}]
     }]
         
-}, { collection: 'games' });
+}, { collection: 'new_games' });
 
 const Game = model('Game', gameSchema);
 
