@@ -1,5 +1,5 @@
 const Game = require('../Models/game');
-const QandA = require('../Models/QaA');
+// const QandA = require('../Models/QaA');
 
 exports.gameController = {
     

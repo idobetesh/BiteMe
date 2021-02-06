@@ -33,11 +33,12 @@ authRouter.post('/', async (req, res) => {
         dbUser = await checkDB(user);
         
         // user exist
-        if(dbUser!= null){
+        if(dbUser != null){
             console.log("Works");
         } else {
             console.log("Not works");
         }
+        req.session.userID = dbUser.id;
         res.cookie('session-token', user.id, { expires: new Date(Date.now() + 3600000) });
         res.json(user);
     } catch (err) {
@@ -46,7 +47,9 @@ authRouter.post('/', async (req, res) => {
 })
 
 authRouter.get('/logout', (req, res) => {
+    req.logout();
     res.clearCookie('session-token');
+    console.log("Logged-out");
     res.send("logged out?")
 })
 
