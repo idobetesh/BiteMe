@@ -4,8 +4,13 @@ const bcrypt = require("bcryptjs");
 const { exists } = require('../Models/user');
 // const nodemailer = require('nodemailer');
 
-exports.userController = {
+async function getUserToGoogle(name, email) {
+  let user = await User.findOne({ username:name ,email: email})
+  return user;
+}
 
+exports.userController = {
+  getUserToGoogle,
     getUsers(req, res) {
         User.find({})
             .then(docs => { res.json(docs) })

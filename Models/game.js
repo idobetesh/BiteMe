@@ -2,6 +2,10 @@ const { Schema, model } = require('mongoose');
 
 const gameSchema = new Schema({
     id: {type: Number},
+    // Add time here.
+    // Maybe define time to the game, either set time or changing time
+    // Logs will be added either to DB or to a file - mainly includes the request and response and everything that will help to understand.
+    // 
     game: 
     [
         {

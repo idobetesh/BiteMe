@@ -16,6 +16,7 @@ const gameRouter = require("./Routers/game.router.js");
 const googleAPIRouter = require("./Routers/googleAPI.router.js");
 const maxCountRouter = require('./Routers/maxCount.router.js');
 const mailRouter = require('./Routers/mail.router.js');
+const authRouter = require('./Routers/auth.router.js');
 const User = require("./Models/user.js");
 
 app.use(express.json());
@@ -55,6 +56,7 @@ app.use('/api/game', gameRouter.gameRouter);
 app.use('/api/restaurantAPI', googleAPIRouter.googleAPI);
 app.use('/api/maxCount', maxCountRouter.maxCount);
 app.use('/api/send', mailRouter.mailRouter);
+app.use('/api/login', authRouter.authRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);

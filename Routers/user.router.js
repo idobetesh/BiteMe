@@ -4,7 +4,8 @@ const userRouter = new Router();
 
 /* http://localhost:3000/api/user */
 userRouter.get('/', userController.getUsers);
-userRouter.get('/:id', userController.getUser);
+// userRouter.get('/:id', userController.getUser);
+userRouter.get('/', userController.getUser);
 userRouter.post('/', userController.addUser);
 userRouter.put('/:id', userController.updateUser);
 userRouter.delete('/:id', userController.deleteUser);
