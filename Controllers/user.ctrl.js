@@ -17,7 +17,6 @@ exports.userController = {
         User.find({})
             .then(docs => { res.json(docs)})
             .catch(err => {console.log(`Error, could NOT get to database: ${err}`)});
-
             
     },
 

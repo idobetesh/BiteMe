@@ -68,7 +68,7 @@ const  morganChalk = morgan(function (tokens, req, res) {
         ].join(' ');
 });
 
-let wr = fs.createWriteStream('./logs.txt', {flags: 'a'});
+let wr = fs.createWriteStream('logs.txt', {flags: 'a'});
 const logger = morgan(':method :status :url  :response-time ms - :date', { stream: wr });
 module.exports = {
     morganChalk, logger
