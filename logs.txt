@@ -241,3 +241,7 @@ GET 200 /api/game/  244.475 ms - Mon, 08 Feb 2021 20:07:05 GMT
 GET 200 /api/game/  324.440 ms - Mon, 08 Feb 2021 20:07:08 GMT
 GET 200 /api/game/  313.377 ms - Mon, 08 Feb 2021 20:07:23 GMT
 GET 304 /api/game/  266.046 ms - Mon, 08 Feb 2021 20:07:27 GMT
+OPTIONS 204 /api/game  2.513 ms - Mon, 08 Feb 2021 20:19:07 GMT
+POST 200 /api/game  214.588 ms - Mon, 08 Feb 2021 20:19:07 GMT
+OPTIONS 204 /api/game  0.127 ms - Mon, 08 Feb 2021 20:21:50 GMT
+POST 200 /api/game  175.994 ms - Mon, 08 Feb 2021 20:21:50 GMT
