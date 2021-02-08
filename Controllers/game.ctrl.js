@@ -3,14 +3,22 @@ const moment = require('moment');
 
 exports.gameController = {
     
-    getGames(req, res) {
-        Game.find({})
-            .then(docs => { res.json(docs) })
-            .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-    },
+    // getGames(req, res) {
+    //     Game.find({})
+    //         .then(docs => { res.json(docs) })
+    //         .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+    // },
 
-    getGame(req, res) {
-        Game.findOne({ id: req.params.id })
+    async getGame(req, res) {
+        const obj = await new Promise((resolve, reject) => {
+            const obj = Game.findOne({}).sort({ _id: -1 }).limit(1)
+            resolve(obj);
+        });
+        
+        const lastId = obj.id;
+        const randomId = Math.floor(Math.random() * (lastId - 1) + 1);
+        console.log(lastId, randomId);
+        Game.findOne({ id: randomId})
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
     },

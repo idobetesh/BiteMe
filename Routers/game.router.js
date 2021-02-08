@@ -4,8 +4,8 @@ const { gameController } = require('../Controllers/game.ctrl');
 const gameRouter = new Router();
 
 /* http://localhost:3000/api/game */
-gameRouter.get('/', gameController.getGames);
-gameRouter.get('/:id', gameController.getGame);
+//gameRouter.get('/', gameController.getGames);
+gameRouter.get('/', gameController.getGame);
 gameRouter.post('/', gameController.addGame);
 gameRouter.put('/:id', gameController.updateGame);
 gameRouter.delete('/:id', gameController.deleteGame);
