@@ -37,10 +37,8 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // <-- location of the react app were connecting to
-    credentials: true,
-  })
-);
+    origin: "http://localhost:3000", // <-- location of the react app were connecting to // will need to enter notify address here
+    credentials: true,}));
 
 require('./passportConfig')(passport);
   app.use(
@@ -50,13 +48,14 @@ require('./passportConfig')(passport);
       saveUninitialized: true,
     })
   );
-  app.use(cookieParser("secretcode"));
+  app.use(cookieParser());
+  
   // Passport middleware
   app.use(passport.initialize());
   app.use(passport.session());
   
 // checking auth middleware
-app.use(authMiddleware.checkAuth);
+//app.use(authMiddleware.checkAuth);
 
 app.use('/api/user', authMiddleware.checkAuth ,userRouter.userRouter);
 app.use('/api/restaurant', restaurantRouter.restaurantRouter);
@@ -70,7 +69,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something went wrong..😥');
 });
-
 
 app.all('/*', (req, res) => {
     res.status(404).sendFile(`${__dirname}/error.html`);

@@ -38,10 +38,10 @@ authRouter.post('/', async (req, res) => {
         } else {
             console.log("Not works");
         }
-        req.session.userID = dbUser.id;
-        console.log(req.session.userID);
-        res.cookie('session-token', user.id, { expires: new Date(Date.now() + 3600000) });
-        res.json(dbUser);
+        // req.session.userID = dbUser.id;
+        //console.log(token);
+        res.cookie('user-token', token, { expires: new Date(Date.now() + 3600000) });
+        res.json(token);
     } catch (err) {
         console.log(err);
     }
@@ -49,7 +49,7 @@ authRouter.post('/', async (req, res) => {
 
 authRouter.get('/logout', (req, res) => {
     req.logout();
-    res.clearCookie('session-token');
+    res.clearCookie('user-token');
     console.log("Logged-out");
     res.send("logged out?")
 })

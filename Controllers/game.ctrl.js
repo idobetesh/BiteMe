@@ -1,5 +1,5 @@
-const Game = require('../Models/game');
-// const QandA = require('../Models/QaA');
+const Game = require('../Models/new_game.js');
+const moment = require('moment');
 
 exports.gameController = {
     
@@ -23,13 +23,16 @@ exports.gameController = {
         
         const newId = obj.id + 1;
         const { body } = req;
-        console.log(body.game);
-        console.log(req.data);
+        console.log("in addgame, nody.game =  ",body.game);
+        console.log("in addgame, body.duration = ",body.duration);
+        console.log(Date().toString());
         const newGame = new Game({
             "id": newId, 
-            "game": req.body.game
+            "time": Date().toString(),
+            "duration": req.body.game.duration,
+            "game": req.body.game.game
         });
-       
+        
         const result = newGame.save();
         if (result) {
             res.json(newGame)
