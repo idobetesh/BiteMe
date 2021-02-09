@@ -47,7 +47,8 @@ authRouter.post('/', async (req, res) => {
     }
 })
 
-authRouter.get('/logout', (req, res) => {
+authRouter.get('/', (req, res) => {
+    console.log("You are in the logout section")
     req.logout();
     res.clearCookie('user-token');
     console.log("Logged-out");

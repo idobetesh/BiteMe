@@ -1,42 +1,3 @@
-// const fs = require('fs');
-// const moment = require('moment');
-
-// const currTime = () => moment().format('DD-MM-YYYY HH:mm:ss');
-
-// const saveToLog = (opObject) => {
-//     console.log("inside logger func");
-//     const timeStr = currTime();
-//     const { statusCode: stat, msg: op } = opObject;
-//     let buff = `${timeStr} -> ${op} | status[${stat}]\n`;
-
-//     fs.appendFile('logs.txt', buff, (err) => {
-//         if (err) return console.log(err);
-//     });
-// }
-
-// module.exports = { saveToLog }
-
-
-
-// const {createLogger, transports, format} = require('winston');
-
-// const logger = createLogger({
-//     transports: [
-//         new transports.File({
-//             filename: 'logs.log',
-//             level: 'info',
-//             format: format.combine(format.timestamp(), format.json())
-//         })
-//         // new transports.File({
-//         //     filename: 'logs.log',
-//         //     level: 'error',
-//         //     format: format.combine(format.timestamp, format.json())
-//         // })
-//     ]
-// })
-
-// module.exports = logger;
-
 const morgan = require ('morgan');
 const chalk = require ('chalk');
 const fs = require('fs');
@@ -69,7 +30,7 @@ const  morganChalk = morgan(function (tokens, req, res) {
 });
 
 let wr = fs.createWriteStream('logs.txt', {flags: 'a'});
-const logger = morgan(':method :status :url  :response-time ms - :date', { stream: wr });
+const logger = morgan('Date: :date - Method: :method, Status: :status, Path: :url, Response-time: :response-time ms', { stream: wr });
 module.exports = {
     morganChalk, logger
 }
