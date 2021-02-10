@@ -3,8 +3,8 @@ const orderSchema = require('./order');
 
 const groupSchema = new Schema({
     id: { type: Number },
-    users_id: [{ type: String }],
-    orders: [ orderSchema ],
+    participants_id: [{ type: Number }],
+    order_id: {type: Number, default: null},
 }, { collection: 'groups' });
 
 const Group = model('Group', groupSchema);

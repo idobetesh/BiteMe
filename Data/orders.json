@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "time": "2021-02-10",
+        "group_id": 1,
+        "restaurants_id": 
+        [
+            "ChIJLyvwqPVLHRUR_M8_-Jipom8",
+            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
+            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
+            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
+            "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
+        ],
+        "chosen_rest_id": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
+    },
+    {
+        "id": 2,
+        "time": "2021-03-10",
+        "group_id": 1,
+        "game_id": 1,
+        "restaurants_id": 
+        [
+            "ChIJLyvwqPVLHRUR_M8_-Jipom8",
+            "ChIJLyvwqPVLHRUR_M8_-Jipom8",
+            "ChIJf61IVji0AhURbQtZBTekvLo",
+            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
+            "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
+        ],
+        "chosen_rest_id": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
+    }
+]

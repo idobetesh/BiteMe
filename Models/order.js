@@ -1,8 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const orderSchema = new Schema({
-    user_id: { type: Number },
-    restaurat_id: {type: Number},
+    id: {type: Number},
+    time: { type: String },
+    group_id: {type: Number},
+    game_id: {type: Number, default: null},
+    restaurants_id: [{type: String}], // google restaurant id
+    chosen_rest_id: {type: String}
 });
 
 const Order = model('Order', orderSchema);
