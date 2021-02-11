@@ -3,7 +3,7 @@ const { gameController } = require('../Controllers/game.ctrl');
 
 const gameRouter = new Router();
 
-/* http://localhost:3000/api/game */
+/* http://localhost:4000/api/game */
 //gameRouter.get('/', gameController.getGames);
 gameRouter.get('/', gameController.getGame);
 gameRouter.post('/', gameController.addGame);

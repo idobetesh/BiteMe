@@ -3,7 +3,7 @@ const { restaurantController } = require('../Controllers/restaurant.ctrl');
 
 const restaurantRouter = new Router();
 
-/* http://localhost:3000/api/restaurant */
+/* http://localhost:4000/api/restaurant */
 restaurantRouter.get('/', restaurantController.getRestaurants);
 restaurantRouter.get('/:id', restaurantController.getRestaurant);
 restaurantRouter.post('/', restaurantController.addRestaurant);

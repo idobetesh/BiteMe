@@ -1,11 +1,10 @@
 const User = require('../Models/user');
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-const { exists } = require('../Models/user');
-const { saveToLog } = require('../Logs/logger');
 // const nodemailer = require('nodemailer');
 // const logger = require('../Logs/logger');
 
+// Getting user by username and email from google api and checking if it is in the DB.
 async function getUserToGoogle(name, email) {
   let user = await User.findOne({ username:name ,email: email})
   return user;

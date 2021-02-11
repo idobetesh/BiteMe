@@ -3,7 +3,7 @@ const { userController } = require('../Controllers/user.ctrl');
 const userRouter = new Router();
 const {morganChalk, logger } = require("../Logs/logger");
 
-/* http://localhost:3000/api/user */
+/* http://localhost:4000/api/user */
 userRouter.get('/', userController.getUsers);
 // userRouter.get('/:id', userController.getUser);
 userRouter.get('/:id', userController.getUser);
