@@ -9,7 +9,6 @@ userRouter.get('/', userController.getUsers);
 userRouter.get('/:id', userController.getUser);
 userRouter.post('/', userController.addUser);
 userRouter.put('/:id', userController.updateUser);
-userRouter.delete('/:id', userController.deleteUser);
 
 userRouter.post('/login', userController.userLogin);
 userRouter.post('/register', userController.userRegister);

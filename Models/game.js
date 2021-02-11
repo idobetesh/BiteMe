@@ -15,7 +15,7 @@ const gameSchema = new Schema({
         options: [answerSchema]
     }]
         
-}, { collection: 'new_games' });
+}, { collection: 'games' });
 
 const Game = model('Game', gameSchema);
 

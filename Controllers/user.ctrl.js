@@ -52,13 +52,6 @@ exports.userController = {
         }
     },
 
-    deleteUser(req, res) {
-        const userToDelete = req.params.id;
-        User.deleteOne({ id: userToDelete })
-            .then(docs => res.json(docs))
-            .catch(err => console.log(`Error, could NOT delete user ${userToDelete} from database: ${err}`));
-    },
-
     updateUser(req, res) {
         const userToUpdate = req.params.id;
         const { body } = req;

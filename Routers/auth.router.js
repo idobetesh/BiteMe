@@ -38,7 +38,7 @@ authRouter.post('/', async (req, res) => {
             res.cookie('user-token', token, { 
                 expires: new Date(Date.now() + 3600000),
                 sameSite: true });
-            res.json(token);
+            res.json(dbUser);
         } else {
             console.log("Not works");
             res.json("User don't exist");

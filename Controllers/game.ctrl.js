@@ -1,4 +1,4 @@
-const Game = require('../Models/new_game.js');
+const Game = require('../Models/game.js');
 const moment = require('moment');
 
 exports.gameController = {
@@ -16,7 +16,7 @@ exports.gameController = {
         });
         
         const lastId = obj.id;
-        const randomId = Math.floor(Math.random() * (lastId - 1) + 1);
+        const randomId = Math.floor(Math.random() * (lastId) + 1);
         console.log(lastId, randomId);
         Game.findOne({ id: randomId})
             .then(docs => { res.json(docs) })
