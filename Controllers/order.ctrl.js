@@ -12,10 +12,13 @@ exports.orderController = {
     },
 
     async addOrder(req, res) {
+        console.log(`hih ${req.user_id} ${req.data}`);
+        console.log(req);
         const obj = await new Promise((resolve, reject) => {
             const obj = Order.findOne({}).sort({ _id: -1 }).limit(1);
             resolve(obj);
         });
+        const userQuery = User.where({id: req.body.user_id});
 
         const query = Order.where({ name: req.body.name });
         query.findOne((err, ord) => {

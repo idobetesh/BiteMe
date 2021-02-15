@@ -8,10 +8,10 @@ const session = require("express-session");
 //const passportLocal = require("passport-local").Strategy;
 //const bcrypt = require("bcryptjs");
 
-// Port 
+/* Port  */
 const port = process.env.PORT || 4000;
 
-// Routers
+/* Routers */
 const userRouter = require("./Routers/user.router.js");
 const restaurantRouter = require("./Routers/restaurant.router.js");
 const gameRouter = require("./Routers/game.router.js");
@@ -23,10 +23,10 @@ const orderRouter = require('./Routers/order.router.js');
 const User = require("./Models/user.js");
 const authMiddleware = require('./Middleware/auth.js');
 
-// For the logs  
+/* Logs */
 const {morganChalk, logger } = require("./Logs/logger");
 
-// Middleware
+/* Middleware */
 app.use(morganChalk);
 app.use(logger);
 app.use(express.json());
@@ -55,14 +55,14 @@ require('./passportConfig')(passport);
   );
   app.use(cookieParser());
   
-  // Passport middleware
+  /* Passport middleware */
   app.use(passport.initialize());
   app.use(passport.session());
   
 // checking auth middleware
 //app.use(authMiddleware.checkAuth);
 
-// Paths
+/* Paths */
 app.use('/api/user', authMiddleware.checkAuth ,userRouter.userRouter);
 app.use('/api/restaurant', restaurantRouter.restaurantRouter);
 app.use('/api/game', gameRouter.gameRouter);
@@ -77,7 +77,7 @@ app.use('/api/order', orderRouter.orderRouter);
 //     res.status(500).send('Something went wrong..😥');
 // });
 
-// Default route for wrong urls
+/* Default route */
 app.all('/*', (req, res) => {
     res.status(404).sendFile(`${__dirname}/error.html`);
 });
