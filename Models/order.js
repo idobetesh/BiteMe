@@ -6,7 +6,7 @@ const orderSchema = new Schema({
     time: { type: String },
     group_id: {type: Number},
     game_id: {type: Number, default: null},
-    restaurants_id: [{type: String}], // google restaurant id
+    restaurants_id: [{user: {type: Number}, rest: {type: String}}], // google restaurant id
     chosen_rest_id: {type: String}
 });
 

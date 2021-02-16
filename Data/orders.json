@@ -5,11 +5,11 @@
         "group_id": 1,
         "restaurants_id": 
         [
-            "ChIJLyvwqPVLHRUR_M8_-Jipom8",
-            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
-            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
-            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
-            "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
+            {"user": 1, "rest": "ChIJLyvwqPVLHRUR_M8_-Jipom8"},
+            {"user": 2, "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"},
+            {"user": 3, "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"},
+            {"user": 5, "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"},
+            {"user": 6, "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"}
         ],
         "chosen_rest_id": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
     },
@@ -20,12 +20,13 @@
         "game_id": 1,
         "restaurants_id": 
         [
-            "ChIJLyvwqPVLHRUR_M8_-Jipom8",
-            "ChIJLyvwqPVLHRUR_M8_-Jipom8",
-            "ChIJf61IVji0AhURbQtZBTekvLo",
-            "ChIJCV7WSoNMHRURA5y3Fmt7gbg",
-            "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
+            {"user": 6, "rest": "ChIJLyvwqPVLHRUR_M8_-Jipom8"},
+            {"user": 7, "rest": "ChIJLyvwqPVLHRUR_M8_-Jipom8"},
+            {"user": 8, "rest": "ChIJf61IVji0AhURbQtZBTekvLo"},
+            {"user":9,  "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"},
+            {"user":10,  "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"}
         ],
         "chosen_rest_id": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
     }
 ]
+  
