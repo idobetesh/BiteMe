@@ -38,14 +38,55 @@ exports.orderController = {
             mm='0'+mm;
         } 
         today = yyyy + '-' + mm + '-' + dd;
-        
         if(today == orderQuery.time){
-            // add my restaurant to the order
-            Order.update({id: orderQuery.id },{$push: {"restaurants_id": {"user": req.body.user_id, "rest": req.body.restaurant_id}}} );
-            console.log("True");
-        } else {
-            // create new order and then push it to you babe shalalalalalala 
+            let exist= false;
+            for (const rest of orderQuery.restaurants_id){
+                if(req.body.user_id == rest.user){
+                    exist = true
+                    break
+                }
+            }
+            const holdsAllArray = orderQuery.restaurants_id;
+            if(exist){
+                console.log("check",holdsAllArray.length)
+                if(holdsAllArray.length == 5) {
+                    const calculateScores = holdsAllArray.reduce((acc, cur) => {
+                        const rest = cur.rest;
+                        if(acc[rest]) {
+                            acc[rest]++;
+                        } else {
+                            acc[rest] = 1;
+                        }
+                        return acc;
+                    }, {})
+                    
+                    console.log(calculateScores)
+                }
+                //res.json("user already ordered");
+            } else {
+                Order.updateOne(
+                    { id: orderQuery.id },
+                    { $addToSet: { restaurants_id: {user: req.body.user_id, rest: req.body.restaurant_id} } })
+                    .then(docs => { 
+                        res.json("Successfully added to existing order")
+                        if(orderQuery.restaurants_id.len == 5) {
+                            const calculateScores = restaurants_id.reduce((acc, cur) => {
+                                const rest = cur.rest;
+                                if(acc[rest]) {
+                                    acc[rest]++;
+                                } else {
+                                    acc[rest] = 1;
+                                }
+                                console.log(acc);
+                            }, {})
+                        }
+                        
+                    })
+                    .catch(err => console.log(`Error, could NOT get to database: ${err}`));; 
+            }
 
+        } else {
+            console.log("In else")
             // Need to add a random game out of our list of games.
             const newOrderId = obj.id +1;
 
@@ -58,9 +99,9 @@ exports.orderController = {
                 "chosen_rest_id": ''
             });
             const result = newOrder.save();
-
+            await Group.updateOne({id: groupQuery.id},{order_id: newOrderId});
             if (result) {
-                res.json(newRestaurant)
+                res.json("Successfully created new order")
             } else {
                 res.status(404).send("Error, could NOT save restaurant");
             }

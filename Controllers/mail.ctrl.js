@@ -1,5 +1,7 @@
 const axios = require('axios').default;
 const nodemailer = require('nodemailer');
+const User = require('../Models/user');
+const Order = require('../Models/order');
 
 
 exports.mailController = {

@@ -15,9 +15,7 @@ exports.restaurantController = {
             Restaurant.findOne({ id: req.params.id })
                 .then(docs => { res.json(docs)})
                 .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-            
         }
-        
     },
 
     async addRestaurant(req, res) {
