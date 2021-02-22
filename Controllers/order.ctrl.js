@@ -6,7 +6,7 @@ const mail = require('./mail.ctrl');
 const Axios = require('axios');
 
 exports.orderController = {
-    // maybe
+
     getOrder(req, res) {
         if (req.params.id) {
             Order.findOne({ id: req.params.id })
@@ -17,11 +17,8 @@ exports.orderController = {
     
     async addScore(req,res) {
         const userQuery = await User.findOne({id: req.body.user_id});
-        //console.log("user controller test", userQuery);
         const groupQuery = await Group.findOne({id: userQuery.group_id});
-        //console.log("group controller test", groupQuery);
         const orderQuery = await Order.findOne({id: groupQuery.order_id});
-        
         const updated = await Order.updateOne({id: orderQuery.id}, { $addToSet: { scores: {_user: req.body.user_id, score: req.body.score} } })
         
         let maxScore = 0;
@@ -39,15 +36,16 @@ exports.orderController = {
                 }
             }
         }
-        // find winner's restaurant
+
+        /* find winner's restaurant */
         for(let i = 0; i < orderQuery1.restaurants_id.length; i++) {
             if(orderQuery1.restaurants_id[i].user == winner_id ) {
                 rest_winner = orderQuery1.restaurants_id[i].rest;
             }
         }
         
+        /* Get the list of the users in the group */
         let restName = '';
-        // Get the list of the users in the group
         let usersList = [];
         for (let i in restaurants) {
             usersList.push(restaurants[i].user)
@@ -58,7 +56,7 @@ exports.orderController = {
         for (let u in usersObjects) {
             _mailList.push(usersObjects[u].email)
         }
-        console.log("mails are: ", _mailList, restName);
+
         Axios({
             method: "POST",
             data: {
@@ -68,13 +66,9 @@ exports.orderController = {
             },
             withCredentials: true,
             url: `http://localhost:4000/api/send`,
-        }).then((res) => {
-            if (res.status === 200) {
-                console.log("posted")
-            }
-        }).catch(err => console.log(err));
-        },
-
+        }).then((res) => {})
+        .catch(err => console.log(err));
+    },
 
     async addOrder(req, res) {
         const obj = await new Promise((resolve, reject) => {
@@ -83,11 +77,8 @@ exports.orderController = {
         });
         
         const userQuery = await User.findOne({id: req.body.user_id});
-        //console.log("user controller test", userQuery);
         const groupQuery = await Group.findOne({id: userQuery.group_id});
-        //console.log("group controller test", groupQuery);
         const orderQuery = await Order.findOne({id: groupQuery.order_id});
-        //console.log("order controller test", orderQuery);
 
         let today = new Date();
         let dd = today.getDate();
@@ -110,7 +101,6 @@ exports.orderController = {
             }
             const holdsAllArray = orderQuery.restaurants_id;
             if(exist){
-                console.log("in exist")
                 res.json("user already ordered");
             } else {
                 Order.updateOne(
@@ -118,8 +108,6 @@ exports.orderController = {
                     { $addToSet: { restaurants_id: {user: req.body.user_id, rest: req.body.restaurant_id} } })
                     .then(docs => {})
                     .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-                    console.log("in not existsssss");
-                    console.log(holdsAllArray.length)
                     if(holdsAllArray.length+1 == 5) {
                         const calculateScores = holdsAllArray.reduce((acc, cur) => {
                             const rest = cur.rest;
@@ -131,13 +119,9 @@ exports.orderController = {
                             return acc;
                         }, {})
                         
-                        // Check for tie
-                        console.log(calculateScores)
-                        
-                    
+                        /* Check for tie */
                         // Finds max values 
                         const dict = calculateScores;
-                    
                         let maxRestCount = { "rest": "", "num": 0 }
                         let _max = 0;
                         for (let key in dict) { 
@@ -154,22 +138,19 @@ exports.orderController = {
 
                         /* cases of tie */
                         let tie = false;
-                        if (dict.length == 5) { // {1,1,1,1,1}
-                            console.log("Tie! {1,1,1,1,1}")
+                        if (dict.length == 5) { // case of: {1,1,1,1,1}
                             tie = true;
                         }
                         // Check if there is a tie
                         let counterTwoForTie = 0;
-                        for (let key in dict) { // {rest1: 2, rest2: 2, rest3: 1} 
+                        for (let key in dict) { 
                             if(dict[key] === 2) {
                                 counterTwoForTie++;
                             }
                         }
-                        console.log(counterTwoForTie, "jjj")
                         // Check if there is a tie and lift flag if true
-                        if(counterTwoForTie === 2) { // two times of 2
-                            tie = true;
-                            console.log("Tie! {2,2,1}")
+                        if(counterTwoForTie === 2) { 
+                            tie = true; // case of: {2,2,1}
                         }
                         // Get the list of the users in the group
                         let usersList = [];
@@ -184,12 +165,9 @@ exports.orderController = {
                         }
                         
                         const lastUserEmail = await User.find({'id': req.body.user_id})
-                        console.log("lasttttt email user!", lastUserEmail.email);
                         _mailList.push(lastUserEmail.email);
-                        console.log("list: ", _mailList)
                         let restName = '';
                         if(!tie){
-                            console.log("tue line 105", maxRestCount.rest, typeof(maxRestCount.rest));
                             Axios({
                                 method: "GET",
                                 // withCredentials: true,
@@ -206,11 +184,8 @@ exports.orderController = {
                                         },
                                         withCredentials: true,
                                         url: `http://localhost:4000/api/send`,
-                                    }).then((res) => {
-                                        if (res.status === 200) {
-                                            console.log("posted")
-                                        }
-                                    }).catch(err => console.log(err));
+                                    }).then((res) => {})
+                                      .catch(err => console.log(err));
                                 }
                             }).catch(err => console.log(err));
                         } else {
@@ -226,23 +201,14 @@ exports.orderController = {
                                 },
                                 withCredentials: true,
                                 url: `http://localhost:4000/api/send`,
-                            }).then((res) => {
-                                if (res.status === 200) {
-                                    console.log("Response about the restaurant", res)
-                                }
-                            }).catch(err => console.log(err));
-                            console.log('mail about tie was send!')
+                            }).then((res) => {})
+                            .catch(err => console.log(err));
                         }
-                        
                     } 
                     res.json("Successfully added to existing order")
-            }
-
+                }
         } else {
-            console.log("In else")
-            // Need to add a random game out of our list of games.
             const newOrderId = obj.id +1;
-            //const gameId = Game.gameController.randomGame();
             const newOrder = new Order({
                 "id": newOrderId,
                 "time": today,
@@ -258,42 +224,9 @@ exports.orderController = {
             } else {
                 res.status(404).send("Error, could NOT save restaurant");
             }
-            console.log("False");
         }
-
-
-        // const query = Order.where({ name: req.body.name });
-        // query.findOne((err, ord) => {
-        //     if (err)
-        //         console.log(err);
-
-        //     if (ord) {
-        //         /* order exists in DB ? ord.count++ : create new order and push to the DB*/
-        //         Order.updateOne({ _id: ord._id }, { $inc: { count: 1 } }).exec();
-        //     } else {
-        //         const newId = obj.id + 1;
-        //         const { body } = req;
-
-        //         const newRestaurant = new Order({
-        //             "id": newId,
-        //             "name": body.name,
-        //             "address": body.address,
-        //             "price": body.price,
-        //             "rate": body.rate,
-        //             "open": body.open,
-        //             "count": 1
-        //         });
-        //         const result = newRestaurant.save();
-        //         if (result) {
-        //             res.json(newRestaurant)
-        //         } else {
-        //             res.status(404).send("Error, could NOT save restaurant");
-        //         }
-        //     }
-        // });
     },
 
-    // maybe 
     deleteOrder(req, res) {
         const orderToDelete = req.params.id;
         Restaurant.deleteOne({ id: orderToDelete })

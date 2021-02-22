@@ -11,8 +11,6 @@ const verify = async (token) => {
     });
     const payload = ticket.getPayload();
 
-    console.log(payload);
-
     let user = {
         id: payload['sub'],
         email: payload['email'],
@@ -34,27 +32,21 @@ authRouter.post('/', async (req, res) => {
         
         // user exist
         if(dbUser != null){
-            console.log("User exist");
             res.cookie('user-token', token, { 
                 expires: new Date(Date.now() + 3600000),
                 sameSite: true });
             res.json(dbUser);
         } else {
-            console.log("Not works");
             res.json("User don't exist");
         }
-        // req.session.userID = dbUser.id;
-        //console.log(token);
     } catch (err) {
         console.log(err);
     }
 })
 
 authRouter.get('/', (req, res) => {
-    console.log("You are in the logout section")
     req.logout();
     res.clearCookie('user_id');
-    console.log("Logged-out");
     res.send("logged out?")
 })
 

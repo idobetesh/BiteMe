@@ -4,9 +4,8 @@ const checkAuth = async (req,res, next) => {
         next();
     } else {
         console.log("Not authenticated");
-        //res.status(401).send('user is unauthenticated')
         next();
-}
+    }
 }
 
 module.exports = {checkAuth};

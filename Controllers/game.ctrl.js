@@ -14,6 +14,16 @@ exports.gameController = {
         return randomId;
     },
 
+    async getAllGames(req, res) {
+        const obj = await new Promise((resolve, reject) => {
+            const obj = Game.find()
+            .then(docs => { res.json(docs) })
+            .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+
+            resolve(obj);
+        });
+    },
+    
     async getGame(req, res) {
         const obj = await new Promise((resolve, reject) => {
             const obj = Game.findOne({}).sort({ _id: -1 }).limit(1)
@@ -53,7 +63,7 @@ exports.gameController = {
     deleteGame(req, res) {
         const gameToDelete = req.params.id;
         Game.deleteOne({ id: gameToDelete })
-            .then(docs => res.json(docs))
+            .then(docs => res.json("Deleted!"))
             .catch(err => console.log(`Error, could NOT delete game ${userToDelete} from database: ${err}`));
     },
 

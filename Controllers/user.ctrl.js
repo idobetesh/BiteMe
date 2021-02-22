@@ -1,10 +1,7 @@
 const User = require('../Models/user');
 const passport = require("passport");
 const bcrypt = require("bcryptjs");
-// const nodemailer = require('nodemailer');
-// const logger = require('../Logs/logger');
 
-// Getting user by username and email from google api and checking if it is in the DB.
 async function getUserToGoogle(name, email) {
   let user = await User.findOne({ username:name ,email: email})
   return user;
@@ -23,8 +20,6 @@ exports.userController = {
         User.findOne({ id: req.params.id })
             .then(docs => { res.json(docs)})
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-            // .catch(logger.info(`User ${id} not exists`));
-            // saveToLog({msg: "Get users", statusCode: 200});
     },
 
     async addUser(req, res) {
@@ -35,7 +30,6 @@ exports.userController = {
         
         const newId = obj.id + 1;
         const { body } = req;
-
         const newUser = new User({
             "id": newId,  
             "name": body.username,
@@ -61,9 +55,7 @@ exports.userController = {
     },
 
     userLogin(req, res, next) {
-        console.log("In userLogin");
         passport.authenticate('local', (err, user, info) => {
-            console.log("After passport.authenticate");
             if (err) next(new Error('AuthenticationError'), req, res);
             if (!user) {
                 console.log("No user exist");
@@ -72,7 +64,6 @@ exports.userController = {
               req.logIn(user, (err) => {
                 if (err) console.log("ERROR!" , err);
                 res.send("Successfully Authenticated");
-                console.log(req.user);
               });
             }
           })(req, res, next);
