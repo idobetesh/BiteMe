@@ -2,21 +2,23 @@ const axios = require('axios').default;
 const nodemailer = require('nodemailer');
 const User = require('../Models/user');
 const Order = require('../Models/order');
-
+const Axios = require ('axios');
 
 exports.mailController = {
 
-    // newGame(req, res)
-
     async sendMail(req,res) {
-        console.log("The winning rest is = ", req.body.winningRest)
+
         let content = "";
-        if (req.body.winningRest === "") {
-            content = "<h2>It was so close!🍿</h2><h3>But it's a tie, see you in 5 minutes for the <a href='https://www.ynet.co.il'>Break-even quiz</a></h3><br><br><h2>cheers🍻,</h2>BiteMe"
+        if(req.body.finalRes) {
+            content = `<h2>Well Done, It was a close game,</h2><h2>but there is only one winner!🥇🏆</h2><br><h3>Bon Appetit🍕,</h3>BiteMe`;
         } else {
-            content = `<h2>The restaurant for today is ${req.body.winningRest}🌶</h2><br><h3>Bon Appetit🍕,</h3>BiteMe`
+            if (req.body.winningRest === "") {
+                content = `<h2>It was so close!🍿</h2><h3>But it's a tie, see you in 5 minutes for the <a href='localhost:3000/game'> Break-even quiz</a></h3><br><br><h2>cheers🍻,</h2>BiteMe`
+            } else {
+                content = `<h2>The restaurant for today is ${req.body.winningRest}🌶</h2><br><h3>Bon Appetit🍕,</h3>BiteMe`
+            }
         }
-    
+        
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -41,6 +43,5 @@ exports.mailController = {
                 }
             })
         });   
-        res.send(`"${content}" \n\nwas send to ${req.body.mailList}`);
     }
 }

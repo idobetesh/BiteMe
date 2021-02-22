@@ -2,12 +2,6 @@ const Game = require('../Models/game.js');
 const moment = require('moment');
 
 exports.gameController = {
-    
-    // getGames(req, res) {
-    //     Game.find({})
-    //         .then(docs => { res.json(docs) })
-    //         .catch(err => console.log(`Error, could NOT get to database: ${err}`));
-    // },
 
     async randomGame () {
         const obj = await new Promise((resolve, reject) => {
@@ -17,7 +11,6 @@ exports.gameController = {
         
         const lastId = obj.id;
         const randomId = Math.floor(Math.random() * (lastId) + 1);
-        console.log(lastId, randomId);
         return randomId;
     },
 
@@ -29,7 +22,6 @@ exports.gameController = {
         
         const lastId = obj.id;
         const randomId = Math.floor(Math.random() * (lastId) + 1);
-        console.log(lastId, randomId);
         Game.findOne({ id: randomId})
             .then(docs => { res.json(docs) })
             .catch(err => console.log(`Error, could NOT get to database: ${err}`));
@@ -43,9 +35,6 @@ exports.gameController = {
         
         const newId = obj.id + 1;
         const { body } = req;
-        console.log("in addgame, nody.game =  ",body.game);
-        console.log("in addgame, body.duration = ",body.duration);
-        console.log(Date().toString());
         const newGame = new Game({
             "id": newId, 
             "time": Date().toString(),

@@ -14,6 +14,68 @@ exports.orderController = {
                 .catch(err => console.log(`Error, could NOT get to database: ${err}`));
         }
     },
+    
+    async addScore(req,res) {
+        const userQuery = await User.findOne({id: req.body.user_id});
+        //console.log("user controller test", userQuery);
+        const groupQuery = await Group.findOne({id: userQuery.group_id});
+        //console.log("group controller test", groupQuery);
+        const orderQuery = await Order.findOne({id: groupQuery.order_id});
+        
+        const updated = await Order.updateOne({id: orderQuery.id}, { $addToSet: { scores: {_user: req.body.user_id, score: req.body.score} } })
+        
+        let maxScore = 0;
+        let winner_id = 0;
+        let rest_winner = '';
+
+        const orderQuery1 = await Order.findOne({id: groupQuery.order_id});
+        const restaurants = orderQuery1.restaurants_id;
+        const scores = orderQuery1.scores;
+        if(scores.length == 5) {
+            for (let i = 0; i < scores.length; i++){
+                if(scores[i].score > maxScore) {
+                    maxScore = scores[i].score;
+                    winner_id = scores[i]._user;
+                }
+            }
+        }
+        // find winner's restaurant
+        for(let i = 0; i < orderQuery1.restaurants_id.length; i++) {
+            if(orderQuery1.restaurants_id[i].user == winner_id ) {
+                rest_winner = orderQuery1.restaurants_id[i].rest;
+            }
+        }
+        
+        let restName = '';
+        // Get the list of the users in the group
+        let usersList = [];
+        for (let i in restaurants) {
+            usersList.push(restaurants[i].user)
+        }
+
+        const usersObjects = await User.find({ 'id': { $in: usersList } });
+        let _mailList = [];
+        for (let u in usersObjects) {
+            _mailList.push(usersObjects[u].email)
+        }
+        console.log("mails are: ", _mailList, restName);
+        Axios({
+            method: "POST",
+            data: {
+                winningRest: rest_winner,
+                mailList: _mailList,
+                finalRes: true
+            },
+            withCredentials: true,
+            url: `http://localhost:4000/api/send`,
+        }).then((res) => {
+            if (res.status === 200) {
+                console.log("posted")
+            }
+        }).catch(err => console.log(err));
+        },
+
+
     async addOrder(req, res) {
         const obj = await new Promise((resolve, reject) => {
             const obj = Order.findOne({}).sort({ _id: -1 }).limit(1);
@@ -21,12 +83,11 @@ exports.orderController = {
         });
         
         const userQuery = await User.findOne({id: req.body.user_id});
-        console.log("user controller test", userQuery);
+        //console.log("user controller test", userQuery);
         const groupQuery = await Group.findOne({id: userQuery.group_id});
-        console.log("group controller test", groupQuery);
+        //console.log("group controller test", groupQuery);
         const orderQuery = await Order.findOne({id: groupQuery.order_id});
-        console.log("order controller test", orderQuery);
-        console.log(orderQuery.time);
+        //console.log("order controller test", orderQuery);
 
         let today = new Date();
         let dd = today.getDate();
@@ -55,7 +116,7 @@ exports.orderController = {
                 Order.updateOne(
                     { id: orderQuery.id },
                     { $addToSet: { restaurants_id: {user: req.body.user_id, rest: req.body.restaurant_id} } })
-                    .then(docs => {setTimeout(()=>{console.log("SHTUT")})})
+                    .then(docs => {})
                     .catch(err => console.log(`Error, could NOT get to database: ${err}`));
                     console.log("in not existsssss");
                     console.log(holdsAllArray.length)
@@ -84,7 +145,6 @@ exports.orderController = {
                                 _max = dict[key];
                                 maxRestCount.rest = key;
                                 maxRestCount.num = dict[key];
-                                // const timer =  setTimeout(() => {console.log("The Fuck Up!!")},1000);
                         }}
                         if(dict[req.body.restaurant_id]) {
                             dict[req.body.restaurant_id]++;
@@ -122,7 +182,11 @@ exports.orderController = {
                         for (let u in usersObjects) {
                             _mailList.push(usersObjects[u].email)
                         }
-    
+                        
+                        const lastUserEmail = await User.find({'id': req.body.user_id})
+                        console.log("lasttttt email user!", lastUserEmail.email);
+                        _mailList.push(lastUserEmail.email);
+                        console.log("list: ", _mailList)
                         let restName = '';
                         if(!tie){
                             console.log("tue line 105", maxRestCount.rest, typeof(maxRestCount.rest));
@@ -138,7 +202,7 @@ exports.orderController = {
                                         data: {
                                             winningRest: restName,
                                             mailList: _mailList,
-                                            gameId: -1
+                                            finalRes: false
                                         },
                                         withCredentials: true,
                                         url: `http://localhost:4000/api/send`,
@@ -153,13 +217,12 @@ exports.orderController = {
                             // When there is tie
                             // Get random game from db
                             const gameId = Game.gameController.randomGame();
-                            //await Order.updateOne({id: orderQuery.id},{game_id: gameId});
                             Axios({
                                 method: "POST",
                                 data: {
                                     winningRest: restName,
                                     mailList: _mailList,
-                                    gameId: gameId
+                                    finalRes: false
                                 },
                                 withCredentials: true,
                                 url: `http://localhost:4000/api/send`,
@@ -179,12 +242,12 @@ exports.orderController = {
             console.log("In else")
             // Need to add a random game out of our list of games.
             const newOrderId = obj.id +1;
-
+            //const gameId = Game.gameController.randomGame();
             const newOrder = new Order({
                 "id": newOrderId,
                 "time": today,
                 "group_id": userQuery.group_id,
-                "game_id": 0,
+                "game_id": -1,
                 "restaurants_id": [{"user": req.body.user_id, "rest": req.body.restaurant_id}],
                 "chosen_rest_id": ''
             });
@@ -195,7 +258,6 @@ exports.orderController = {
             } else {
                 res.status(404).send("Error, could NOT save restaurant");
             }
-
             console.log("False");
         }
 

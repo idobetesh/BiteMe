@@ -15,18 +15,24 @@
     },
     {
         "id": 2,
-        "time": "2021-03-10",
+        "time": "2021-02-22",
         "group_id": 1,
-        "game_id": 1,
+        "game_id": 10,
         "restaurants_id": 
         [
-            {"user": 6, "rest": "ChIJLyvwqPVLHRUR_M8_-Jipom8"},
             {"user": 7, "rest": "ChIJLyvwqPVLHRUR_M8_-Jipom8"},
             {"user": 8, "rest": "ChIJf61IVji0AhURbQtZBTekvLo"},
             {"user":9,  "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"},
             {"user":10,  "rest": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"}
         ],
-        "chosen_rest_id": "ChIJCV7WSoNMHRURA5y3Fmt7gbg"
+        "scores": 
+        [
+            {"_user": 7, "score": 2},
+            {"_user": 8, "score": 2},
+            {"_user": 9, "score": 2},
+            {"_user": 10, "score": 2}
+        ],
+        "chosen_rest_id": ""
     }
 ]
   

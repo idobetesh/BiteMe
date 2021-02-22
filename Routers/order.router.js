@@ -7,5 +7,5 @@ const orderRouter = new Router();
 orderRouter.get('/:id', orderController.getOrder);
 orderRouter.post('/', orderController.addOrder);
 orderRouter.delete('/:id', orderController.deleteOrder);
-
+orderRouter.post('/userScores', orderController.addScore);
 module.exports = { orderRouter };
