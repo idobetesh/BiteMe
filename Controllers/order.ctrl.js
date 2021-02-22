@@ -1,6 +1,9 @@
 const Order = require('../Models/order');
 const User = require('../Models/user');
 const Group = require('../Models/group');
+const Game = require('./game.ctrl');
+const mail = require('./mail.ctrl');
+const Axios = require('axios');
 
 exports.orderController = {
     // maybe
@@ -60,7 +63,93 @@ exports.orderController = {
                         return acc;
                     }, {})
                     
+                    // Check for tie
                     console.log(calculateScores)
+
+                    // Finds max values 
+                    const dict = calculateScores;
+                    const maxRestCount = Object.keys(dict).reduce((a, b) => dict[a] > dict[b] ? {"rest": a, "num": dict[a]} : {"rest": b, "num": dict[b]});
+                    console.log('max',maxRestCount.num)
+
+                    /* cases of tie */
+                    let tie = false;
+                    if (dict.length == 5) { // {1,1,1,1,1}
+                        console.log("Tie! {1,1,1,1,1}")
+                        tie = true;
+                    }
+                    // Check if there is a tie
+                    let counterTwoForTie = 0;
+                    for (let key in dict) { // {2,2,1}
+                        if(dict[key] == 2) {
+                            counterTwoForTie++;
+                        }
+                    }
+                    // Check if there is a tie and lift flag if true
+                    if(counterTwoForTie) {
+                        tie = true;
+                        console.log("Tie! {2,2,1}")
+                    }
+                    // Get the list of the users in the group
+                    let usersList = [];
+                    for (let i in holdsAllArray) {
+                        usersList.push(holdsAllArray[i].user)
+                    }
+
+                    const usersObjects = await User.find({ 'id': { $in: usersList } });
+                    let _mailList = [];
+                    for (let u in usersObjects) {
+                        _mailList.push(usersObjects[u].email)
+                    }
+
+                    if(!tie){
+                        let restName = '';
+                        Axios({
+                            method: "GET",
+                            withCredentials: true,
+                            url: `https://maps.googleapis.com/maps/api/place/details/json?placeid=${maxRestCount.rest}&key=AIzaSyBkxP0uOzCNjtByiZD1KccRs7GFfKy_7ss`,
+                        }).then((res) => {
+                            if (res.status === 200) {
+                                console.log("Response about the restaurant", res)
+                                restName = res.name
+                            }
+                        }).catch(err => console.log(err));
+
+                            Axios({
+                            method: "POST",
+                            data: {
+                                winningRest: restName,
+                                mailList: _mailList,
+                                gameId: -1
+                            },
+                            withCredentials: true,
+                            url: `http://localhost:4000/api/send`,
+                        }).then((res) => {
+                            if (res.status === 200) {
+                                console.log("Response about the restaurant")
+                            }
+                        }).catch(err => console.log(err));
+                    }else {
+                        // Getting game
+                        const gameId = Game.gameController.randomGame();
+                        console.log('mail about tie was send!')
+                        //await Order.updateOne({id: orderQuery.id},{game_id: gameId});
+                        Axios({
+                            method: "POST",
+                            data: {
+                                winningRest: null,
+                                mailList: _mailList,
+                                gameId: -1
+                            },
+                            withCredentials: true,
+                            url: `http://localhost:4000/api/send`,
+                        }).then((res) => {
+                            if (res.status === 200) {
+                                console.log("Response about the restaurant", res)
+                            }
+                        }).catch(err => console.log(err));
+                        console.log('mail about tie was send!')
+                    }
+                    
                 }
                 //res.json("user already ordered");
             } else {

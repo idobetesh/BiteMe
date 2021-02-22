@@ -9,6 +9,18 @@ exports.gameController = {
     //         .catch(err => console.log(`Error, could NOT get to database: ${err}`));
     // },
 
+    async randomGame () {
+        const obj = await new Promise((resolve, reject) => {
+            const obj = Game.findOne({}).sort({ _id: -1 }).limit(1)
+            resolve(obj);
+        });
+        
+        const lastId = obj.id;
+        const randomId = Math.floor(Math.random() * (lastId) + 1);
+        console.log(lastId, randomId);
+        return randomId;
+    },
+
     async getGame(req, res) {
         const obj = await new Promise((resolve, reject) => {
             const obj = Game.findOne({}).sort({ _id: -1 }).limit(1)
