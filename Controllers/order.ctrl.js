@@ -14,9 +14,7 @@ exports.orderController = {
                 .catch(err => console.log(`Error, could NOT get to database: ${err}`));
         }
     },
-
     async addOrder(req, res) {
-        console.log(`hih ${req.body.user_id} ${req.body.restaurant_id}`);
         const obj = await new Promise((resolve, reject) => {
             const obj = Order.findOne({}).sort({ _id: -1 }).limit(1);
             resolve(obj);
@@ -51,127 +49,130 @@ exports.orderController = {
             }
             const holdsAllArray = orderQuery.restaurants_id;
             if(exist){
-                console.log("check",holdsAllArray.length)
-                if(holdsAllArray.length == 5) {
-                    const calculateScores = holdsAllArray.reduce((acc, cur) => {
-                        const rest = cur.rest;
-                        if(acc[rest]) {
-                            acc[rest]++;
-                        } else {
-                            acc[rest] = 1;
-                        }
-                        return acc;
-                    }, {})
-                    
-                    // Check for tie
-                    console.log(calculateScores)
-
-                    // Finds max values 
-                    const dict = calculateScores;
-                    const maxRestCount = Object.keys(dict).reduce((a, b) => dict[a] > dict[b] ? {"rest": a, "num": dict[a]} : {"rest": b, "num": dict[b]});
-                    console.log('max',maxRestCount.num)
-
-                    /* cases of tie */
-                    let tie = false;
-                    if (dict.length == 5) { // {1,1,1,1,1}
-                        console.log("Tie! {1,1,1,1,1}")
-                        tie = true;
-                    }
-                    // Check if there is a tie
-                    let counterTwoForTie = 0;
-                    for (let key in dict) { // {2,2,1}
-                        if(dict[key] == 2) {
-                            counterTwoForTie++;
-                        }
-                    }
-                    // Check if there is a tie and lift flag if true
-                    if(counterTwoForTie) {
-                        tie = true;
-                        console.log("Tie! {2,2,1}")
-                    }
-                    // Get the list of the users in the group
-                    let usersList = [];
-                    for (let i in holdsAllArray) {
-                        usersList.push(holdsAllArray[i].user)
-                    }
-
-                    const usersObjects = await User.find({ 'id': { $in: usersList } });
-                    let _mailList = [];
-                    for (let u in usersObjects) {
-                        _mailList.push(usersObjects[u].email)
-                    }
-
-                    if(!tie){
-                        let restName = '';
-                        Axios({
-                            method: "GET",
-                            withCredentials: true,
-                            url: `https://maps.googleapis.com/maps/api/place/details/json?placeid=${maxRestCount.rest}&key=AIzaSyBkxP0uOzCNjtByiZD1KccRs7GFfKy_7ss`,
-                        }).then((res) => {
-                            if (res.status === 200) {
-                                console.log("Response about the restaurant", res)
-                                restName = res.name
-                            }
-                        }).catch(err => console.log(err));
-
-                            Axios({
-                            method: "POST",
-                            data: {
-                                winningRest: restName,
-                                mailList: _mailList,
-                                gameId: -1
-                            },
-                            withCredentials: true,
-                            url: `http://localhost:4000/api/send`,
-                        }).then((res) => {
-                            if (res.status === 200) {
-                                console.log("Response about the restaurant")
-                            }
-                        }).catch(err => console.log(err));
-                    }else {
-                        // Getting game
-                        const gameId = Game.gameController.randomGame();
-                        console.log('mail about tie was send!')
-                        //await Order.updateOne({id: orderQuery.id},{game_id: gameId});
-                        Axios({
-                            method: "POST",
-                            data: {
-                                winningRest: null,
-                                mailList: _mailList,
-                                gameId: -1
-                            },
-                            withCredentials: true,
-                            url: `http://localhost:4000/api/send`,
-                        }).then((res) => {
-                            if (res.status === 200) {
-                                console.log("Response about the restaurant", res)
-                            }
-                        }).catch(err => console.log(err));
-                        console.log('mail about tie was send!')
-                    }
-                    
-                }
-                //res.json("user already ordered");
+                console.log("in exist")
+                res.json("user already ordered");
             } else {
                 Order.updateOne(
                     { id: orderQuery.id },
                     { $addToSet: { restaurants_id: {user: req.body.user_id, rest: req.body.restaurant_id} } })
-                    .then(docs => { 
-                        res.json("Successfully added to existing order")
-                        if(orderQuery.restaurants_id.len == 5) {
-                            const calculateScores = restaurants_id.reduce((acc, cur) => {
-                                const rest = cur.rest;
-                                if(acc[rest]) {
-                                    acc[rest]++;
-                                } else {
-                                    acc[rest] = 1;
+                    .then(docs => {setTimeout(()=>{console.log("SHTUT")})})
+                    .catch(err => console.log(`Error, could NOT get to database: ${err}`));
+                    console.log("in not existsssss");
+                    console.log(holdsAllArray.length)
+                    if(holdsAllArray.length+1 == 5) {
+                        const calculateScores = holdsAllArray.reduce((acc, cur) => {
+                            const rest = cur.rest;
+                            if(acc[rest]) {
+                                acc[rest]++;
+                            } else {
+                                acc[rest] = 1;
+                            }
+                            return acc;
+                        }, {})
+                        
+                        // Check for tie
+                        console.log(calculateScores)
+                        
+                    
+                        // Finds max values 
+                        const dict = calculateScores;
+                    
+                        let maxRestCount = { "rest": "", "num": 0 }
+                        let _max = 0;
+                        for (let key in dict) { 
+                            if(dict[key] > _max) {
+                                _max = dict[key];
+                                maxRestCount.rest = key;
+                                maxRestCount.num = dict[key];
+                                // const timer =  setTimeout(() => {console.log("The Fuck Up!!")},1000);
+                        }}
+                        if(dict[req.body.restaurant_id]) {
+                            dict[req.body.restaurant_id]++;
+                        } else {
+                            dict[req.body.restaurant_id] = 1;
+                        }
+
+                        /* cases of tie */
+                        let tie = false;
+                        if (dict.length == 5) { // {1,1,1,1,1}
+                            console.log("Tie! {1,1,1,1,1}")
+                            tie = true;
+                        }
+                        // Check if there is a tie
+                        let counterTwoForTie = 0;
+                        for (let key in dict) { // {rest1: 2, rest2: 2, rest3: 1} 
+                            if(dict[key] === 2) {
+                                counterTwoForTie++;
+                            }
+                        }
+                        console.log(counterTwoForTie, "jjj")
+                        // Check if there is a tie and lift flag if true
+                        if(counterTwoForTie === 2) { // two times of 2
+                            tie = true;
+                            console.log("Tie! {2,2,1}")
+                        }
+                        // Get the list of the users in the group
+                        let usersList = [];
+                        for (let i in holdsAllArray) {
+                            usersList.push(holdsAllArray[i].user)
+                        }
+    
+                        const usersObjects = await User.find({ 'id': { $in: usersList } });
+                        let _mailList = [];
+                        for (let u in usersObjects) {
+                            _mailList.push(usersObjects[u].email)
+                        }
+    
+                        let restName = '';
+                        if(!tie){
+                            console.log("tue line 105", maxRestCount.rest, typeof(maxRestCount.rest));
+                            Axios({
+                                method: "GET",
+                                // withCredentials: true,
+                                url: `https://maps.googleapis.com/maps/api/place/details/json?placeid=${maxRestCount.rest}&key=AIzaSyBkxP0uOzCNjtByiZD1KccRs7GFfKy_7ss`,
+                            }).then((res) => {
+                                if (res.status === 200) {
+                                    restName = res.data.result.name;
+                                    Axios({
+                                        method: "POST",
+                                        data: {
+                                            winningRest: restName,
+                                            mailList: _mailList,
+                                            gameId: -1
+                                        },
+                                        withCredentials: true,
+                                        url: `http://localhost:4000/api/send`,
+                                    }).then((res) => {
+                                        if (res.status === 200) {
+                                            console.log("posted")
+                                        }
+                                    }).catch(err => console.log(err));
                                 }
-                                console.log(acc);
-                            }, {})
+                            }).catch(err => console.log(err));
+                        } else {
+                            // When there is tie
+                            // Get random game from db
+                            const gameId = Game.gameController.randomGame();
+                            //await Order.updateOne({id: orderQuery.id},{game_id: gameId});
+                            Axios({
+                                method: "POST",
+                                data: {
+                                    winningRest: restName,
+                                    mailList: _mailList,
+                                    gameId: gameId
+                                },
+                                withCredentials: true,
+                                url: `http://localhost:4000/api/send`,
+                            }).then((res) => {
+                                if (res.status === 200) {
+                                    console.log("Response about the restaurant", res)
+                                }
+                            }).catch(err => console.log(err));
+                            console.log('mail about tie was send!')
                         }
                         
-                    })
-                    .catch(err => console.log(`Error, could NOT get to database: ${err}`));; 
+                    } 
+                    res.json("Successfully added to existing order")
             }
 
         } else {
@@ -199,35 +200,35 @@ exports.orderController = {
         }
 
 
-        const query = Order.where({ name: req.body.name });
-        query.findOne((err, ord) => {
-            if (err)
-                console.log(err);
+        // const query = Order.where({ name: req.body.name });
+        // query.findOne((err, ord) => {
+        //     if (err)
+        //         console.log(err);
 
-            if (ord) {
-                /* order exists in DB ? ord.count++ : create new order and push to the DB*/
-                Order.updateOne({ _id: ord._id }, { $inc: { count: 1 } }).exec();
-            } else {
-                const newId = obj.id + 1;
-                const { body } = req;
+        //     if (ord) {
+        //         /* order exists in DB ? ord.count++ : create new order and push to the DB*/
+        //         Order.updateOne({ _id: ord._id }, { $inc: { count: 1 } }).exec();
+        //     } else {
+        //         const newId = obj.id + 1;
+        //         const { body } = req;
 
-                const newRestaurant = new Order({
-                    "id": newId,
-                    "name": body.name,
-                    "address": body.address,
-                    "price": body.price,
-                    "rate": body.rate,
-                    "open": body.open,
-                    "count": 1
-                });
-                const result = newRestaurant.save();
-                if (result) {
-                    res.json(newRestaurant)
-                } else {
-                    res.status(404).send("Error, could NOT save restaurant");
-                }
-            }
-        });
+        //         const newRestaurant = new Order({
+        //             "id": newId,
+        //             "name": body.name,
+        //             "address": body.address,
+        //             "price": body.price,
+        //             "rate": body.rate,
+        //             "open": body.open,
+        //             "count": 1
+        //         });
+        //         const result = newRestaurant.save();
+        //         if (result) {
+        //             res.json(newRestaurant)
+        //         } else {
+        //             res.status(404).send("Error, could NOT save restaurant");
+        //         }
+        //     }
+        // });
     },
 
     // maybe 

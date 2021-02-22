@@ -9,10 +9,10 @@ exports.mailController = {
     // newGame(req, res)
 
     async sendMail(req,res) {
-        console.log("im in mailer!!!, mail list: ", req.body.mailList)
+        console.log("The winning rest is = ", req.body.winningRest)
         let content = "";
-        if (req.body.winningRest == null) {
-            content = "<h2>It was so close!🍿</h2><h3>but it's a tie, see you in 5 minutes for the break-even quiz</h3><br><a href='https://www.ynet.co.il'>Click To Play</a><br><h2>cheers🍻,</h2>BiteMe"
+        if (req.body.winningRest === "") {
+            content = "<h2>It was so close!🍿</h2><h3>But it's a tie, see you in 5 minutes for the <a href='https://www.ynet.co.il'>Break-even quiz</a></h3><br><br><h2>cheers🍻,</h2>BiteMe"
         } else {
             content = `<h2>The restaurant for today is ${req.body.winningRest}🌶</h2><br><h3>Bon Appetit🍕,</h3>BiteMe`
         }
