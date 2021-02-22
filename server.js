@@ -4,7 +4,7 @@ const cors = require("cors");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-require('dotenv').config();
+//require('dotenv').config();
 
 /* Port  */
 const port = process.env.PORT || 4000;
