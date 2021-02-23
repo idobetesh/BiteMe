@@ -4,7 +4,7 @@ const cors = require("cors");
 const passport = require("passport");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-require('dotenv').config();
+//require('dotenv').config();
 
 /* Port  */
 const port = process.env.PORT || 4000;
@@ -23,23 +23,24 @@ const authMiddleware = require('./Middleware/auth.js');
 const {morganChalk, logger } = require("./Logs/logger");
 
 /* Middleware */
-app.use(morganChalk);
+//app.use(morganChalk);
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+/* Passport middleware */
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin');
+    res.header('Access-Control-Allow-Credentials:true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS')
     res.set('Content-Type', 'application/json');
     next();
 });
 
-app.use(
-  cors({
-    origin: "http://localhost:3000", // <-- location of the react app were connecting to // will need to enter notify address here
-    credentials: true,}));
+app.use(cors({ credentials: true, origin: 'https://pleaseworkplease.netlify.app', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
 
 require('./passportConfig')(passport);
   app.use(
@@ -51,9 +52,6 @@ require('./passportConfig')(passport);
   );
   app.use(cookieParser());
   
-  /* Passport middleware */
-  app.use(passport.initialize());
-  app.use(passport.session());
   
 /* Paths */
 app.use('/api/user', authMiddleware.checkAuth ,userRouter.userRouter);
