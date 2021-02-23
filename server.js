@@ -40,7 +40,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors({ credentials: true, origin: 'https://pleaseworkplease.netlify.app', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
+app.use(cors({ credentials: true, origin: 'http://localhost:3000', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
 
 require('./passportConfig')(passport);
   app.use(
