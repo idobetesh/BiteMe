@@ -23,7 +23,7 @@ const authMiddleware = require('./Middleware/auth.js');
 const {morganChalk, logger } = require("./Logs/logger");
 
 /* Middleware */
-app.use(morganChalk);
+//app.use(morganChalk);
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
