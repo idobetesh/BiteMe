@@ -37,7 +37,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(cors({ credentials: true, origin: 'https://bitemeapp.netlify.app', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
+app.use(cors({ credentials: true, origin: 'https://6034f22399afcc009ed300e0--pleaseworkplease.netlify.app', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
 
 require('./passportConfig')(passport);
   app.use(
