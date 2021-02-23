@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Credentials:true');
     res.header('Access-Control-Allow-Headers', 'Origin, X-requested-With, Content-Type, Accept');
     res.header('Access-Control-Allow-Methods', 'POST, PUT, GET, DELETE, OPTIONS')
     res.set('Content-Type', 'application/json');
@@ -40,6 +41,8 @@ app.use(
   cors({
     origin: "https://60344a3013c8531bb1becccf--bitemeapp.netlify.app", // <-- location of the react app were connecting to // will need to enter notify address here
     credentials: true,}));
+
+app.use(cors({ credentials: true, origin: 'https://6034d6c535e60be5c6740dcf--bitemeapp.netlify.app', methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], preflightContinue: true }));
 
 require('./passportConfig')(passport);
   app.use(
