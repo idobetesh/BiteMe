@@ -1,6 +1,5 @@
 const { Router } = require('express');
 const { orderController } = require('../Controllers/order.ctrl');
-
 const orderRouter = new Router();
 
 /* http://localhost:4000/api/order */

@@ -2437,3 +2437,15 @@ Date: Mon, 22 Feb 2021 23:29:04 GMT - Method: GET, Status: 200, Path: /api/game/
 Date: Mon, 22 Feb 2021 23:29:11 GMT - Method: GET, Status: 304, Path: /api/game/all, Response-time: 96.562 ms
 Date: Mon, 22 Feb 2021 23:31:47 GMT - Method: OPTIONS, Status: 204, Path: /api/game, Response-time: 0.208 ms
 Date: Mon, 22 Feb 2021 23:31:47 GMT - Method: POST, Status: 200, Path: /api/game, Response-time: 96.737 ms
+Date: Tue, 23 Feb 2021 19:31:53 GMT - Method: OPTIONS, Status: 204, Path: /api/login, Response-time: 2.385 ms
+Date: Tue, 23 Feb 2021 19:31:55 GMT - Method: POST, Status: 200, Path: /api/login, Response-time: 1394.494 ms
+Date: Tue, 23 Feb 2021 19:32:23 GMT - Method: GET, Status: 304, Path: /api/login/, Response-time: 5.254 ms
+Date: Tue, 23 Feb 2021 19:32:31 GMT - Method: OPTIONS, Status: 204, Path: /api/login, Response-time: 0.197 ms
+Date: Tue, 23 Feb 2021 19:32:31 GMT - Method: POST, Status: 200, Path: /api/login, Response-time: 99.262 ms
+Date: Tue, 23 Feb 2021 19:34:10 GMT - Method: OPTIONS, Status: 204, Path: /api/login, Response-time: 0.125 ms
+Date: Tue, 23 Feb 2021 19:34:10 GMT - Method: POST, Status: 200, Path: /api/login, Response-time: 118.455 ms
+Date: Tue, 23 Feb 2021 19:34:48 GMT - Method: GET, Status: 200, Path: /api/game/all, Response-time: 151.681 ms
+Date: Tue, 23 Feb 2021 19:34:56 GMT - Method: GET, Status: 304, Path: /api/game/all, Response-time: 131.584 ms
+Date: Tue, 23 Feb 2021 19:35:12 GMT - Method: OPTIONS, Status: 204, Path: /api/login, Response-time: 0.121 ms
+Date: Tue, 23 Feb 2021 19:35:12 GMT - Method: POST, Status: 200, Path: /api/login, Response-time: 96.433 ms
+Date: Tue, 23 Feb 2021 20:01:49 GMT - Method: GET, Status: 304, Path: /api/login/, Response-time: 7.799 ms

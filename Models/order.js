@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { Stream } = require('nodemailer/lib/xoauth2');
 
 const orderSchema = new Schema({
     id: {type: Number},
