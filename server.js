@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // <-- location of the react app were connecting to // will need to enter notify address here
+    origin: "https://60344a3013c8531bb1becccf--bitemeapp.netlify.app", // <-- location of the react app were connecting to // will need to enter notify address here
     credentials: true,}));
 
 require('./passportConfig')(passport);
