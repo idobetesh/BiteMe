@@ -6,7 +6,7 @@ const Axios = require ('axios');
 
 exports.mailController = {
 
-    async sendMail(req,res) {
+    async sendMail(req, res) {
 
         let content = "";
         if(req.body.finalRes) {

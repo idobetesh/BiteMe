@@ -65,7 +65,7 @@ exports.orderController = {
                 finalRes: true
             },
             withCredentials: true,
-            url: `http://localhost:4000/api/send`,
+            url: `https://bite-me-app1.herokuapp.com/api/send`,
         }).then((res) => {})
         .catch(err => console.log(err));
     },
@@ -183,7 +183,7 @@ exports.orderController = {
                                             finalRes: false
                                         },
                                         withCredentials: true,
-                                        url: `http://localhost:4000/api/send`,
+                                        url: `https://bite-me-app1.herokuapp.com/api/send`,
                                     }).then((res) => {})
                                       .catch(err => console.log(err));
                                 }
@@ -200,7 +200,7 @@ exports.orderController = {
                                     finalRes: false
                                 },
                                 withCredentials: true,
-                                url: `http://localhost:4000/api/send`,
+                                url: `https://bite-me-app1.herokuapp.com/api/send`,
                             }).then((res) => {})
                             .catch(err => console.log(err));
                         }

@@ -46,7 +46,7 @@ authRouter.post('/', async (req, res) => {
 
 authRouter.get('/', (req, res) => {
     req.logout();
-    res.clearCookie('user_id');
+    res.clearCookie('user-token');
     res.send("logged out?")
 })
 
